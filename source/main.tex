@@ -1,0 +1,163 @@
+\documentclass[spanish,utf8]{beamer}
+\usepackage{amsmath,mathrsfs,amsfonts}
+\usepackage{graphicx}
+
+\title{Teorema de los 4 colores}
+\subtitle{Int. Matemática Discreta}
+\author{Gabriel Quiroz \and Carlos Aznarán \and Franss Cruz \and Jose Navío}
+\institute[UNI]{Universidad Nacional de Ingeniería}
+\date{\today}
+%\usetheme{CambridgeUS}
+%\usetheme{Warsaw}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{EastLansing}
+\usetheme{Frankfurt}
+%\usetheme{default}
+%\usetheme{Bergen}
+%\usetheme{Boadilla}
+\graphicspath{{images/}}
+\begin{document}
+\maketitle
+\section{Introducción}
+
+\begin{frame}{Indice}
+\tableofcontents    
+\end{frame}
+
+\begin{frame}{¿Qué dice la conjetura?}
+\begin{block}{}
+Bastan 4 colores para colorear un mapa geográfico
+plano, de modo que dos países con frontera común
+tengan diferente color.
+\end{block}
+
+\begin{minipage}[c]{5cm}
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.08]{mapa-4-colores_HR.jpg}
+    \caption{Mapa político coloreado}
+\end{figure}
+\end{minipage}
+\begin{minipage}[c]{5cm}
+\begin{block}{Mapa conexo}
+\emph{ Un mapa es conexo (de una pieza) y cada una de sus regiones también es conexa.}
+\end{block}
+\end{minipage}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{}
+Dos regiones no pueden tocarse solo en un punto, y así, se pueden ignorar regiones con una única línea frontera.
+\end{block}
+\begin{center}
+\includegraphics[scale=0.3]{fronteras.png}
+\end{center}
+
+\begin{block}{}
+Es un problema topológico: no importa la forma de las regiones, sino como están colocadas unas respecto a otras.
+\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Leonhard Euler}
+\begin{block}{Fórmula de Euler para mapas:}
+Núm(caras) – Núm(aristas) + Núm(vértices) = 2
+\end{block}
+\begin{center}
+   \includegraphics[scale=0.08]{poliedros2.jpg}
+\end{center}
+\end{frame}
+\section{Historia}
+
+\begin{frame}{Linea del Tiempo}
+\includegraphics[scale=0.35]{linea.png}    
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Personajes}
+%\begin{minipage}[c]{3cm}
+%\includegraphics[width=2.5cm,higth=2.5cm]{Francis_guthrie} \\
+%\centering \bf{FRANCIS GUTHRIE}
+%\end{minipage}
+%\begin{minipage}[c]{4cm}
+%\includegraphics[width=2.5cm,higth=2.5cm]{morgan.jpg}\\
+%\centering\bf{AUGUST DE MORGAN}
+%\end{minipage}
+%\begin{minipage}[c]{3cm}
+%\includegraphics[width=2.5cm,higth=2.5cm]{kempe.jpeg}\\
+%\centering\bf{ALFRED BRAY KEMPE}
+%\end{minipage}
+
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Fechas importantes}
+\begin{itemize}
+    \item 1852: Francis Guthrie plantea el problema a su hermano Frederick y éste a Augustus de Morgan.
+    
+    \item  1878: Arthur Cayley publica el enunciado de la conjetura.
+    
+    \item  1879: Sir Alfred Bray Kempe publica su demostración.
+    
+    \item  1913: George Birkhoff introduce la noción de configuración reducible.
+    
+    \item  1960: Se introduce el llamado método de descarga.
+    
+    \item  1969: Avances de Heinrich Heesch en reducibilidad y obtención de conjuntos inevitables de configuraciones.
+    
+    \item 1976: Ken Appel y Wolfgang Haken prueban con ayuda de un ordenador que sus 1.482 configuraciones son reducibles (50 días de cálculo).
+    
+    \item  1996: N. Robertson, D.P. Sanders, P. Seymour y R. Thomas mejoran la demostración con ayuda de ordenador (sólo 633 configuraciones) y automatizan la prueba de la inevitabilidad.
+\end{itemize}   
+\end{frame}
+
+\begin{frame}{Francis Guthrie}
+\begin{flushright}
+\begin{block}{}
+Francis Guthrie (1839-1899) abogado y botánico, observa que puede colorear un mapa complejo de los cantones de Inglaterra con 4 colores. En 1852, enuncia el problema a su hermano Frederick (University College London) y a éste a Augustus de Morgan. Francis Guthrie observa que 3 colores no son suficientes, con el diagrama crítico:
+\end{block}
+\begin{figure}
+  \includegraphics[scale=0.3]{diagrama.jpg}
+    \caption{Diagrama Crítico}
+\end{figure}
+\end{flushright}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{August de Morgan}
+\begin{block}{Difusión del teorema}
+Augustus de Morgan (1806-1871) estaba muy interesado en la conjetura de los 4 colores y difundió entre sus colegas su importancia. Una de las primeras personas con las que “habló” fue con el matemático y físico irlandés Sir William Rowan Hamilton (1805-1865), que no compartía el interés de De Morgan por el problema. Le escribe una carta el 23 de octubre de 1852.
+\end{block}
+
+\begin{block}{Respuesta de Hamilton}
+Cuatro días después, Hamilton le contesta: “I am not likely to attempt your “quaternion” of colours very soon”
+\end{block}    
+\end{frame}
+
+\begin{frame}{Primera demostración}
+\begin{block}{}
+Kempe se interesa por el problema de los 4 colores tras la pregunta de Cayley en la London Mathematical Society.
+\end{block}
+
+\begin{block}{}
+En junio de 1879 obtiene su solución del teorema de los 4 colores y lo publica en el Amer. Journal of Maths. En 1880, publica unas versiones. simplificadas de su prueba, donde corrige algunas erratas de su prueba original, pero deja intacto el error fatal.
+\end{block}
+    
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{El error fatal}
+    
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Demostración definitiva}
+    
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Aplicaciones}
+\begin{frame}{}
+    
+\end{frame}
+
+\end{document}
