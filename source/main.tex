@@ -2,6 +2,7 @@
 % !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape] | txs:///biber | txs:///pdflatex/[--shell-escape]
 \documentclass[spanish,utf8]{beamer}
 \usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
 \usepackage{amsmath,mathrsfs,amsfonts}
 %\usepackage[figurename=Figura]{caption}
 \usepackage[backend=biber,style=numeric, defernumbers=true, sorting=ynt]{biblatex}
@@ -10,13 +11,18 @@
 \usetheme{CambridgeUS}
 \usecolortheme{dolphin}
 \useinnertheme{rectangles}
-\useoutertheme[hooks]{tree}
+%\useoutertheme[hooks]{tree}
 
 \usefonttheme[onlymath]{serif}
 
 \setbeamercovered{transparent}
 
-\title[Teorema de los cuatro colores]{\Huge El teorema de los cuatro colores}
+\setbeamertemplate{footline}[frame number]{}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{}
+\setbeamertemplate{headline}{}
+
+\title[Teorema de los cuatro colores]{\Huge\sffamily El teorema de los cuatro colores}
 \subtitle{Introducción a la matemática discreta CM -- 254}
 
 \author[Grupo N$^\circ6$]{%
@@ -24,25 +30,27 @@
 		\begin{columns}
 			\column{.3\linewidth}
 			\centering
-			C. Aznarán Laos \inst{1,2}
+			C. Aznarán Laos %\inst{1,2}
 			\column{.3\linewidth}
 			\centering
-			F. Cruz Ordoñez \inst{1,2}
+			F. Cruz Ordoñez %\inst{1,2}
 		\end{columns}
 		\vspace{12pt}
 		\begin{columns}
 			\column{.3\linewidth}
 			\centering
-			G. Quiroz Gómez \inst{1,2}
+			G. Quiroz Gómez %\inst{1,2}
 			\column{.3\linewidth}
 			\centering
-			J. Navío Torres \inst{1,2}
+			J. Navío Torres %\inst{1,2}
 		\end{columns}
 	}
 	{Author 1, Author 2, Author 3}
 }
 
-\institute[FC -- UNI]{\inst{1} Facultad de Ciencias \and \inst{2} Universidad Nacional de Ingeniería
+\institute[FC -- UNI]{\large%\inst{1}
+	Facultad de Ciencias \and%\inst{2}
+	Universidad Nacional de Ingeniería
 }
 \date{18 de junio del 2018}
 
@@ -80,9 +88,20 @@
 \tableofcontents
 \end{frame}
 
-\subsection{Conjetura de los cuatro colores}
+\subsection{El problema de los cuatro colores}
+
+{
+	\usebackgroundtemplate{\centering\includegraphics[width=\paperwidth]{crop}}%height=\paperheight,
+	\begin{frame}[plain]
+\end{frame}
+}
 
 \begin{frame}{\insertsection}\transblindsvertical
+
+%\begin{theorem}{ABC}
+%	content...
+%\end{theorem}
+
 \begin{block}{¿Qué dice la conjetura?}
 Bastan cuatro colores para colorear un mapa geográfico plano, de modo que dos países con frontera común tengan colores diferentes.
 \end{block}
@@ -90,7 +109,7 @@ Bastan cuatro colores para colorear un mapa geográfico plano, de modo que dos p
 \begin{minipage}[c]{6cm}
 \begin{figure}
     \centering
-    \includegraphics[width=5cm]{mapa-4-colores_HR.jpg}
+    \includegraphics[width=4cm]{mapa-4-colores_HR.jpg}
     \caption{Mapa político coloreado}
 \end{figure}
 \end{minipage}
@@ -113,8 +132,6 @@ Dos regiones no pueden tocarse solo en un punto, y así, se pueden ignorar regio
 Es un problema topológico: no importa la forma de las regiones, sino como están colocadas unas respecto a otras.
 \end{block}
 \end{frame}
-\subsection{Importancia del teorema para los matemáticos}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{\insertsection}\transblindsvertical
 Leonhard Euler
@@ -128,39 +145,50 @@ $$
 \end{center}
 \end{frame}
 
-\section{Historia}
+\section{Un poco de historia}
 
-\subsection{Primera historia}
+\subsection{Formulación de la conjetura}
+
+\begin{frame}{\insertsection}\transblindsvertical
+\begin{flushright}
+	\begin{block}{Francis Guthrie (1839-1899)}
+		Abogado y botánico, observa que puede colorear un mapa complejo de los cantones de Inglaterra con 4 colores. En 1852, enuncia el problema a su hermano Frederick (University College London) y a éste a Augustus de Morgan. Francis Guthrie observa que 3 colores no son suficientes, con el diagrama crítico:
+	\end{block}
+	\begin{figure}
+		\includegraphics[scale=0.3]{diagrama.jpg}
+		\caption{Diagrama Crítico}
+	\end{figure}
+\end{flushright}
+\end{frame}
 
 \begin{frame}[t]
 Hola
 \end{frame}
 
 
-\subsection{Segunda historia}
+\subsection{Primer intento de demostración: Las cadenas de \citeauthor{kempe}}
 
-\begin{frame}{\insertsection}\transblindsvertical
-Línea del Tiempo
-\centering
-\includegraphics[width=12.5cm]{linea.png}    
-\end{frame}
+\subsection{Idea clave: La reducibilidad de mapas de \citeauthor{birkhoff}}
 
+\subsection{Demostración de \citeauthor{appel}}
 
-\begin{frame}{Personajes}
-\centering
-\begin{minipage}[c]{3cm}
-\includegraphics[width=2.5cm]{Francis_guthrie} \\
-\centering \bf{FRANCIS GUTHRIE}
-\end{minipage}
-\begin{minipage}[c]{4cm}
-\includegraphics[width=2.5cm]{morgan.jpg}\\
-\centering\bf{AUGUST DE MORGAN}
-\end{minipage}
-\begin{minipage}[c]{3cm}
-\includegraphics[width=2.5cm]{kempe.jpeg}\\
-\centering\bf{ALFRED BRAY KEMPE}
-\end{minipage}
-\end{frame}
+\subsection{Demostración de \citeauthor{robertson}}
+
+%\begin{frame}{Personajes}
+%\centering
+%\begin{minipage}[c]{3cm}
+%\includegraphics[width=2.5cm]{Francis_guthrie} \\
+%\centering \bf{FRANCIS GUTHRIE}
+%\end{minipage}
+%\begin{minipage}[c]{4cm}
+%\includegraphics[width=2.5cm]{morgan.jpg}\\
+%\centering\bf{AUGUST DE MORGAN}
+%\end{minipage}
+%\begin{minipage}[c]{3cm}
+%\includegraphics[width=2.5cm]{kempe.jpeg}\\
+%\centering\bf{ALFRED BRAY KEMPE}
+%\end{minipage}
+%\end{frame}
 
 \begin{frame}{\insertsection}\transblindsvertical
 Fechas importantes
@@ -181,18 +209,6 @@ Fechas importantes
     
     \item  1996: N. Robertson, D.P. Sanders, P. Seymour y R. Thomas mejoran la demostración con ayuda de ordenador (sólo 633 configuraciones) y automatizan la prueba de la inevitabilidad.
 \end{itemize}   
-\end{frame}
-
-\begin{frame}{\insertsection}\transblindsvertical
-\begin{flushright}
-\begin{block}{Francis Guthrie (1839-1899)}
-Abogado y botánico, observa que puede colorear un mapa complejo de los cantones de Inglaterra con 4 colores. En 1852, enuncia el problema a su hermano Frederick (University College London) y a éste a Augustus de Morgan. Francis Guthrie observa que 3 colores no son suficientes, con el diagrama crítico:
-\end{block}
-\begin{figure}
-  \includegraphics[scale=0.3]{diagrama.jpg}
-    \caption{Diagrama Crítico}
-\end{figure}
-\end{flushright}
 \end{frame}
 
 \begin{frame}{\insertsection}\transblindsvertical
@@ -245,7 +261,12 @@ Demostración definitiva
 \end{itemize}
 \end{frame}
 
+\section{Conclusiones}
+\subsection{Importancia del teorema para los matemáticos}
 
+\begin{frame}
+Hola hola
+\end{frame}
 \end{document}
 Definición( Número cromático de un grafo )
 Sea G = ( V, E ) un grafo y sea k un número natural. Una aplicación  c : V → { 1 , 2 ,...,k } se llama coloración del grafo G si c ( x ) ≠ c ( y ) se cumple para cada { x, y }∈ E . El número cromático de G, denotado por χ(G), es el mínimo valor para el cual existe una coloración c:  V(G) → {1,2,...,k}.
