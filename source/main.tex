@@ -1,6 +1,12 @@
+% !TeX document-id = {2dbf9b71-bbba-4dd9-bbd6-409e1a74ac36}
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape] | txs:///biber | txs:///pdflatex/[--shell-escape]
 \documentclass[spanish,utf8]{beamer}
 \usepackage{amsmath,mathrsfs,amsfonts}
 %\usepackage[figurename=Figura]{caption}
+\usepackage[backend=biber,style=numeric, defernumbers=true]{biblatex}
+%\usepackage[citestyle=alphabetic,style=alphabetic,backend=biber, sorting=nty]{biblatex}
+%\addbibresource{bibliography/reference.bib}
+\addbibresource{bibliography/reference.bib}
 \input{generalcommands.tex}
 \usetheme{CambridgeUS}
 \usecolortheme{dolphin}
@@ -200,13 +206,15 @@ Demostración definitiva
 
 \end{frame}
 
+
 \begin{frame}{Bibliografía}\transblindsvertical
-\begin{thebibliography}{9}
-	\bibitem{Kop04}
-	Kopka, Helmut; Daly, Patrick W.
-	\newblock {\em Guide to \LaTeX}. 4th ed.
-	\newblock Pearson Education, Inc., 2004.
-\end{thebibliography}
+\begin{itemize}
+	\item Libros
+	\nocite{*}
+	\printbibliography[prefixnumbers=FC, heading=none,keyword=book]
+	\item Artículos matemáticos
+	\printbibliography[prefixnumbers=SC, heading=none,keyword=paper]
+\end{itemize}
 \end{frame}
 
 \end{document}

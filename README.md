@@ -1,6 +1,6 @@
 # El teorema de los cuatro colores
 
-![](./images/image1.png)
+![](./source/images/image1.png)
 
 Profesor de teoría: MSc. Ronald Mas Huaman
 
