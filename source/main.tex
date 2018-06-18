@@ -4,6 +4,11 @@
 \input{generalcommands.tex}
 \usetheme{CambridgeUS}
 \usecolortheme{dolphin}
+\useinnertheme{rectangles}
+\useoutertheme[hooks]{tree}
+
+\usefonttheme[onlymath]{serif}
+
 \setbeamercovered{transparent}
 
 \title[Teorema de los cuatro colores]{El teorema de los cuatro colores}
@@ -47,22 +52,26 @@
 \graphicspath{{images/}}
 
 \begin{document}
+
+\begin{frame}[plain]
 \maketitle
+\end{frame}
+
 \section{Introducción}
 
-\begin{frame}{\contentsname}
+\begin{frame}{\contentsname}\transblindsvertical
 \tableofcontents
 \end{frame}
 
-\begin{frame}{\insertsection}
+\begin{frame}{\insertsection}\transblindsvertical
 \begin{block}{¿Qué dice la conjetura?}
 Bastan cuatro colores para colorear un mapa geográfico plano, de modo que dos países con frontera común tengan colores diferentes.
 \end{block}
 
-\begin{minipage}[c]{5cm}
+\begin{minipage}[c]{6cm}
 \begin{figure}
     \centering
-    \includegraphics[scale=0.08]{mapa-4-colores_HR.jpg}
+    \includegraphics[width=5cm]{mapa-4-colores_HR.jpg}
     \caption{Mapa político coloreado}
 \end{figure}
 \end{minipage}
@@ -78,7 +87,7 @@ Un mapa es conexo\footnote{de una pieza} y cada una de sus regiones también es 
 Dos regiones no pueden tocarse solo en un punto, y así, se pueden ignorar regiones con una única línea frontera.
 \end{block}
 \begin{center}
-\includegraphics[scale=0.3]{fronteras.png}
+\includegraphics[height=3cm]{fronteras.png}
 \end{center}
 
 \begin{block}{}
@@ -88,10 +97,12 @@ Es un problema topológico: no importa la forma de las regiones, sino como está
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{\insertsection}
+\begin{frame}{\insertsection}\transblindsvertical
 Leonhard Euler
 \begin{block}{Fórmula de Euler para mapas:}
-Núm(caras) – Núm(aristas) + Núm(vértices) = 2
+$$
+\#\text{caras} - \#\text{aristas} + \#\text{vértices} = 2.
+$$
 \end{block}
 \begin{center}
    \includegraphics[height=5cm]{poliedros2.jpg}
@@ -99,7 +110,7 @@ Núm(caras) – Núm(aristas) + Núm(vértices) = 2
 \end{frame}
 \section{Historia}
 
-\begin{frame}{\insertsection}
+\begin{frame}{\insertsection}\transblindsvertical
 Línea del Tiempo
 \centering
 \includegraphics[width=12.5cm]{linea.png}    
@@ -122,7 +133,7 @@ Línea del Tiempo
 \end{minipage}
 \end{frame}
 
-\begin{frame}{\insertsection}
+\begin{frame}{\insertsection}\transblindsvertical
 Fechas importantes
 \begin{itemize}
     \item 1852: Francis Guthrie plantea el problema a su hermano Frederick y éste a Augustus de Morgan.
@@ -143,7 +154,7 @@ Fechas importantes
 \end{itemize}   
 \end{frame}
 
-\begin{frame}{\insertsection}
+\begin{frame}{\insertsection}\transblindsvertical
 \begin{flushright}
 \begin{block}{Francis Guthrie (1839-1899)}
 Abogado y botánico, observa que puede colorear un mapa complejo de los cantones de Inglaterra con 4 colores. En 1852, enuncia el problema a su hermano Frederick (University College London) y a éste a Augustus de Morgan. Francis Guthrie observa que 3 colores no son suficientes, con el diagrama crítico:
@@ -154,8 +165,8 @@ Abogado y botánico, observa que puede colorear un mapa complejo de los cantones
 \end{figure}
 \end{flushright}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{\insertsection}
+
+\begin{frame}{\insertsection}\transblindsvertical
 August de Morgan
 \begin{block}{Difusión del teorema}
 Augustus de Morgan (1806-1871) estaba muy interesado en la conjetura de los 4 colores y difundió entre sus colegas su importancia. Una de las primeras personas con las que ``habló'' fue con el matemático y físico irlandés Sir William Rowan Hamilton (1805-1865), que no compartía el interés de De Morgan por el problema. Le escribe una carta el 23 de octubre de 1852.
@@ -166,7 +177,7 @@ Cuatro días después, Hamilton le contesta: ``I am not likely to attempt your �
 \end{block}    
 \end{frame}
 
-\begin{frame}{\insertsection}
+\begin{frame}{\insertsection}\transblindsvertical
 \begin{block}{Primera demostración}
 Kempe se interesa por el problema de los 4 colores tras la pregunta de Cayley en la London Mathematical Society.
 \end{block}
@@ -176,17 +187,26 @@ En junio de 1879 obtiene su solución del teorema de los 4 colores y lo publica 
 \end{block}
     \end{frame}
 
-\begin{frame}{\insertsection}
+\begin{frame}{\insertsection}\transblindsvertical
 El error fatal
 \end{frame}
 
-\begin{frame}{\insertsection}
+\begin{frame}{\insertsection}\transblindsvertical
 Demostración definitiva
 \end{frame}
 
 \section{Aplicaciones}
-\begin{frame}{\insertsection}
+\begin{frame}{\insertsection}\transblindsvertical
 
+\end{frame}
+
+\begin{frame}{Bibliografía}\transblindsvertical
+\begin{thebibliography}{9}
+	\bibitem{Kop04}
+	Kopka, Helmut; Daly, Patrick W.
+	\newblock {\em Guide to \LaTeX}. 4th ed.
+	\newblock Pearson Education, Inc., 2004.
+\end{thebibliography}
 \end{frame}
 
 \end{document}
