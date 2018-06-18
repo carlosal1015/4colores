@@ -3,11 +3,17 @@
 \documentclass[spanish,utf8]{beamer}
 \usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
-\usepackage{amsmath,mathrsfs,amsfonts}
+\usepackage{amsmath,mathrsfs,amsfonts,amsthm}
+\usepackage{caption}
 %\usepackage[figurename=Figura]{caption}
 \usepackage[backend=biber,style=numeric, defernumbers=true, sorting=ynt]{biblatex}
 \addbibresource{bibliography/reference.bib}
 \input{generalcommands.tex}
+\theoremstyle{definition}
+%\newtheorem{theorem}{Teorema}[section]
+%\newtheorem{definition}{Definición}
+\newtheorem{remark}{Observación}
+
 \usetheme{CambridgeUS}
 \usecolortheme{dolphin}
 \useinnertheme{rectangles}
@@ -90,60 +96,32 @@
 
 \subsection{El problema de los cuatro colores}
 
+
+\begin{frame}{\insertsubsection}\transblindsvertical
+
+\begin{alertblock}{Pregunta} % 1852 Francis Guthrie
+	¿Es posible colorear cualquier mapa geográfico plano usando solamente \emph{cuatro colores}, de modo que dos países con frontera común tengan colores diferentes? 
+\end{alertblock}
+
+\begin{minipage}[c]{6cm}
+	\begin{figure}
+		\centering
+		\includegraphics[width=4cm]{mapa-4-colores_HR.jpg}
+		\caption{Mapa político coloreado}
+	\end{figure}
+\end{minipage}
+\begin{minipage}[c]{5cm}
+	\begin{definition}[Mapa conexo]
+		Un mapa es conexo\footnote{de una pieza} y cada una de sus regiones también es conexa.
+	\end{definition}
+\end{minipage}
+\end{frame}
+
 {
 	\usebackgroundtemplate{\centering\includegraphics[width=\paperwidth]{crop}}%height=\paperheight,
 	\begin{frame}[plain]
 \end{frame}
 }
-
-\begin{frame}{\insertsection}\transblindsvertical
-
-%\begin{theorem}{ABC}
-%	content...
-%\end{theorem}
-
-\begin{block}{¿Qué dice la conjetura?}
-Bastan cuatro colores para colorear un mapa geográfico plano, de modo que dos países con frontera común tengan colores diferentes.
-\end{block}
-
-\begin{minipage}[c]{6cm}
-\begin{figure}
-    \centering
-    \includegraphics[width=4cm]{mapa-4-colores_HR.jpg}
-    \caption{Mapa político coloreado}
-\end{figure}
-\end{minipage}
-\begin{minipage}[c]{5cm}
-\begin{block}{Mapa conexo}\em
-Un mapa es conexo\footnote{de una pieza} y cada una de sus regiones también es conexa.
-\end{block}
-\end{minipage}
-\end{frame}
-
-\begin{frame}{\insertsection}
-\begin{block}{}
-Dos regiones no pueden tocarse solo en un punto, y así, se pueden ignorar regiones con una única línea frontera.
-\end{block}
-\begin{center}
-\includegraphics[height=3cm]{fronteras.png}
-\end{center}
-
-\begin{block}{}
-Es un problema topológico: no importa la forma de las regiones, sino como están colocadas unas respecto a otras.
-\end{block}
-\end{frame}
-
-\begin{frame}{\insertsection}\transblindsvertical
-Leonhard Euler
-\begin{block}{Fórmula de Euler para mapas:}
-$$
-\#\text{caras} - \#\text{aristas} + \#\text{vértices} = 2.
-$$
-\end{block}
-\begin{center}
-   \includegraphics[height=5cm]{poliedros2.jpg}
-\end{center}
-\end{frame}
 
 \section{Un poco de historia}
 
@@ -161,16 +139,111 @@ $$
 \end{flushright}
 \end{frame}
 
-\begin{frame}[t]
-Hola
+\begin{frame}{\insertsubsection}
+\begin{remark}{}
+	Dos regiones no pueden tocarse solo en un punto, y así, se pueden ignorar regiones con una única línea frontera.
+\end{remark}
+\begin{center}
+	\includegraphics[height=3cm]{fronteras.png}
+\end{center}
+
+Es un problema topológico: no importa la forma de las regiones, sino como están colocadas unas respecto a otras.
 \end{frame}
 
+\begin{frame}{\insertsubsection}\transblindsvertical
+Leonhard Euler
+\begin{theorem}[Fórmula de Euler para mapas]
+	$$
+	\#\text{caras} - \#\text{aristas} + \#\text{vértices} = 2.
+	$$
+\end{theorem}
+\begin{center}
+	\includegraphics[height=5cm]{poliedros2.jpg}
+\end{center}
+\end{frame}
 
 \subsection{Primer intento de demostración: Las cadenas de \citeauthor{kempe}}
 
+\subsection{El error fatal de \citeauthor{kempe} por Heawood}
+
+\subsection{Algunas definiciones más}
+
+\begin{frame}[allowframebreaks]
+\frametitle{\insertsubsection}
+
+\begin{definition}[Número cromático] 
+Sea $G=(V,E)$ un grafo y sea $k$ un número natural. Una aplicación $c:V\to \{1,2,\ldots k\}$ se llama \emph{coloración del grafo} $G$ si $c(x)\neq c(y)$ se cumple para cada rama $\{x,y\}\in E$. \linebreak El número cromático de $G$, denotado por $x(G)$, es el \emph{mínimo valor} de $k$ para el cual existe una coloración $c:V(G)\to {1,2\ldots,k}$.
+\end{definition}
+
+\begin{definition}[Grafo Dual]
+Sea $G=(V,E)$ un grafo planar con un dibujo planar fijo. Denotamos $\mathcal{F}$ por el conjunto de caras de $G$. Definimos un grafo, con posibles lazos y ramas múltiples, como $(\mathcal{F},E,\epsilon)$, donde $\epsilon$ se define como $\epsilon(e)={F_i,F_J]}$ siempre que la rama $\epsilon$ sea una frontera común de las caras $F_i,F_j$ (también permitimos que $F_i=F_j$, en el caso en que la misma cara este ambos lados de una rama dada).
+
+Este grafo $(\mathcal{F},E,\epsilon)$ se le llama el dual (\emph{geométrico}) de $G$ y se denota por $G^*$.	
+\end{definition}
+\end{frame}
+
+\subsection{Algunos ejemplos}
+
+\begin{frame}[allowframebreaks]
+\frametitle{\insertsubsection}
+
+\begin{example}[Ejemplo de Grafos Duales]
+Para construir una gráfica dual de un grafo plano $G$ se debe colocar un vértice dentro de cada región de $G$ e incluir la región infinita de $G$. Para cada arista compartida por las $2$ regiones, se debe dibujar una arista que conecte a los vértices dentro de estas regiones y para cada arista que se recorre $2$ veces en el camino cerrado alrededor de las aristas de una región se dibuja un lazo en el vértice de la región. 
+\end{example}
+
+\begin{figure}[H]
+	\captionsetup{justification=centering,margin=0.5cm}
+	\centering
+	\begin{minipage}{.5\textwidth}
+		\centering
+		\includegraphics[width=3cm]{example1.png}
+		\caption{Grafo $G$.}
+	\end{minipage}%
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=3cm]{example2.png}
+		\caption{Grafo $G$ y su dual $G^{\ast}$.}
+	\end{minipage}
+\end{figure}
+
+\begin{example}[Otro ejemplo]
+Sea $G=(V,E)$ un grafo plano, se llama grafo dual de $G$ y se denota por $G^{\ast}$, aquel construido de la siguiente manera:
+
+\begin{enumerate}
+	\item Se elige un punto $v_i$ en cada cara $F_i$ de $G$. Estos puntos son los vértices de $G^{\ast}$.
+
+	\item Por cada arista $e\in E$ se traza una línea $e^{\ast}$ que atraviesa únicamente la arista $e$, y se unen los vértices $v_i$ pertenecientes a las caras adjuntas a $e$. Estas líneas son las aristas de $G^{\ast}$. A continuación se ilustra este procedimiento de construcción con un ejemplo:
+	\end{enumerate}
+\end{example}
+
+\begin{figure}[H]
+	\captionsetup{justification=centering,margin=0.5cm}
+	\centering
+	\includegraphics{example3.png}
+	\caption{Grafo planar $G$ y	su grafo dual $G^{\prime}=G^{\ast}$.}
+\end{figure}
+
+\end{frame}
+
 \subsection{Idea clave: La reducibilidad de mapas de \citeauthor{birkhoff}}
 
+\begin{frame}
+\frametitle{\insertsection:\insertsubsection}
+\begin{theorem}[\citeauthor{birkhoff}]
+\begin{enumerate}
+	\item La conjetura de los cuatro colores puede ser falsa.
+	
+	\item Es posible hallar una colección finita de configuraciones reducibles tal que cualquier mapa planar debe contener uno de ellos (lo que probaría la conjetura de cuatro colores)
+	
+	\item la conjetura de cuatro colores puede ser cierta, pero pueden requerirse métodos más complicados para una prueba
+\end{enumerate}
+\end{theorem}
+\end{frame}
+
 \subsection{Demostración de \citeauthor{appel}}
+
+\subsubsection{Método de descarga}
+\subsubsection{Método de reducibilidad}
 
 \subsection{Demostración de \citeauthor{robertson}}
 
@@ -248,6 +321,8 @@ Demostración definitiva
 
 \end{frame}
 
+\section{Conclusiones}
+\subsection{Importancia del teorema para los matemáticos}
 
 \begin{frame}[allowframebreaks]{Referencias}\transblindsvertical
 \begin{itemize}
@@ -261,26 +336,10 @@ Demostración definitiva
 \end{itemize}
 \end{frame}
 
-\section{Conclusiones}
-\subsection{Importancia del teorema para los matemáticos}
-
-\begin{frame}
-Hola hola
-\end{frame}
 \end{document}
-Definición( Número cromático de un grafo )
-Sea G = ( V, E ) un grafo y sea k un número natural. Una aplicación  c : V → { 1 , 2 ,...,k } se llama coloración del grafo G si c ( x ) ≠ c ( y ) se cumple para cada { x, y }∈ E . El número cromático de G, denotado por χ(G), es el mínimo valor para el cual existe una coloración c:  V(G) → {1,2,...,k}.
 
-Definición ( Grafo dual)
-Sea G un grafo planar, es decir, un grafo planar (V, E) con un dibujo planar fijo. Denotamos por F  el conjunto de caras de G. Definimos un grafo, con posibles lazos y ramas múltiples, como (F,E,ε), donde ε se define como ε(e)={Fi, Fj } siempre que la rama e sea una frontera común de las caras Fi y Fj (también permitimos que Fi=Fj, en el caso en que la misma cara esté a ambos lados de una rama dada). Este grafo (F,E,ε ) se llama el dual (geométrico) de G y se denota por G∗.
-
-Ejemplo de Grafos Duales 
-Para construir una gráfica dual de un grafo plano G se debe colocar un vértice dentro de cada región de G e incluir la región infinita de G. Para cada arista compartida por las 2 regiones, se debe dibujar una arista que conecte a los vértices dentro de estas regiones y para cada arista que se recorre 2 veces en el camino cerrado alrededor de las aristas de una región se dibuja un lazo en el vértice de la región. 
 %imagen 1	%imagen 2
-Otro ejemplo:
-Sea G( V, E ) un grafo plano, se llama grafo dual de G y se denota por G*, aquel construido de la siguiente manera:
-a) Se elige un punto vi en cada cara Fi de G. Estos puntos son los vértices de G*.
-b) Por cada arista e∈   E se traza una línea e*que atraviesa únicamente la arista e, y se unen los vértices vi pertenecientes a las caras adjuntas a e. Estas líneas son las aristas de G*.A continuación se ilustra este procedimiento de construcción con un ejemplo:
+:
 
 G: Grafo planar
 G’: Grafo dual G*
