@@ -3,9 +3,7 @@
 \documentclass[spanish,utf8]{beamer}
 \usepackage{amsmath,mathrsfs,amsfonts}
 %\usepackage[figurename=Figura]{caption}
-\usepackage[backend=biber,style=numeric, defernumbers=true]{biblatex}
-%\usepackage[citestyle=alphabetic,style=alphabetic,backend=biber, sorting=nty]{biblatex}
-%\addbibresource{bibliography/reference.bib}
+\usepackage[backend=biber,style=numeric, defernumbers=true, sorting=ynt]{biblatex}
 \addbibresource{bibliography/reference.bib}
 \input{generalcommands.tex}
 \usetheme{CambridgeUS}
@@ -69,6 +67,8 @@
 \tableofcontents
 \end{frame}
 
+\subsection{Conjetura de los cuatro colores}
+
 \begin{frame}{\insertsection}\transblindsvertical
 \begin{block}{¿Qué dice la conjetura?}
 Bastan cuatro colores para colorear un mapa geográfico plano, de modo que dos países con frontera común tengan colores diferentes.
@@ -100,7 +100,7 @@ Dos regiones no pueden tocarse solo en un punto, y así, se pueden ignorar regio
 Es un problema topológico: no importa la forma de las regiones, sino como están colocadas unas respecto a otras.
 \end{block}
 \end{frame}
-
+\subsection{Importancia del teorema para los matemáticos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{\insertsection}\transblindsvertical
@@ -207,13 +207,15 @@ Demostración definitiva
 \end{frame}
 
 
-\begin{frame}{Bibliografía}\transblindsvertical
+\begin{frame}[allowframebreaks]{Referencias}\transblindsvertical
 \begin{itemize}
 	\item Libros
 	\nocite{*}
-	\printbibliography[prefixnumbers=FC, heading=none,keyword=book]
+	\printbibliography[heading=none,keyword=book]
 	\item Artículos matemáticos
-	\printbibliography[prefixnumbers=SC, heading=none,keyword=paper]
+	\printbibliography[heading=none,keyword=paper]
+	\item Sitios web
+	\printbibliography[heading=none,keyword=online]
 \end{itemize}
 \end{frame}
 
