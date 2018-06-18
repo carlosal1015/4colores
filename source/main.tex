@@ -1,6 +1,7 @@
 % !TeX document-id = {2dbf9b71-bbba-4dd9-bbd6-409e1a74ac36}
 % !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape] | txs:///biber | txs:///pdflatex/[--shell-escape]
 \documentclass[spanish,utf8]{beamer}
+\usepackage[T1]{fontenc}
 \usepackage{amsmath,mathrsfs,amsfonts}
 %\usepackage[figurename=Figura]{caption}
 \usepackage[backend=biber,style=numeric, defernumbers=true, sorting=ynt]{biblatex}
@@ -15,7 +16,7 @@
 
 \setbeamercovered{transparent}
 
-\title[Teorema de los cuatro colores]{El teorema de los cuatro colores}
+\title[Teorema de los cuatro colores]{\Huge El teorema de los cuatro colores}
 \subtitle{Introducción a la matemática discreta CM -- 254}
 
 \author[Grupo N$^\circ6$]{%
@@ -54,6 +55,18 @@
 %\usetheme{Bergen}
 %\usetheme{Boadilla}
 \graphicspath{{images/}}
+
+\AtBeginSubsection[]
+{
+	\begin{frame}<beamer>
+	\frametitle{\contentsname}
+	\tableofcontents[
+	currentsection,
+	sectionstyle=show/show,
+	subsectionstyle=show/shaded/hide
+	]
+\end{frame}
+}
 
 \begin{document}
 
@@ -114,7 +127,17 @@ $$
    \includegraphics[height=5cm]{poliedros2.jpg}
 \end{center}
 \end{frame}
+
 \section{Historia}
+
+\subsection{Primera historia}
+
+\begin{frame}[t]
+Hola
+\end{frame}
+
+
+\subsection{Segunda historia}
 
 \begin{frame}{\insertsection}\transblindsvertical
 Línea del Tiempo
@@ -202,6 +225,9 @@ Demostración definitiva
 \end{frame}
 
 \section{Aplicaciones}
+
+\subsection{Juego Hex}
+
 \begin{frame}{\insertsection}\transblindsvertical
 
 \end{frame}
@@ -219,4 +245,22 @@ Demostración definitiva
 \end{itemize}
 \end{frame}
 
+
 \end{document}
+Definición( Número cromático de un grafo )
+Sea G = ( V, E ) un grafo y sea k un número natural. Una aplicación  c : V → { 1 , 2 ,...,k } se llama coloración del grafo G si c ( x ) ≠ c ( y ) se cumple para cada { x, y }∈ E . El número cromático de G, denotado por χ(G), es el mínimo valor para el cual existe una coloración c:  V(G) → {1,2,...,k}.
+
+Definición ( Grafo dual)
+Sea G un grafo planar, es decir, un grafo planar (V, E) con un dibujo planar fijo. Denotamos por F  el conjunto de caras de G. Definimos un grafo, con posibles lazos y ramas múltiples, como (F,E,ε), donde ε se define como ε(e)={Fi, Fj } siempre que la rama e sea una frontera común de las caras Fi y Fj (también permitimos que Fi=Fj, en el caso en que la misma cara esté a ambos lados de una rama dada). Este grafo (F,E,ε ) se llama el dual (geométrico) de G y se denota por G∗.
+
+Ejemplo de Grafos Duales 
+Para construir una gráfica dual de un grafo plano G se debe colocar un vértice dentro de cada región de G e incluir la región infinita de G. Para cada arista compartida por las 2 regiones, se debe dibujar una arista que conecte a los vértices dentro de estas regiones y para cada arista que se recorre 2 veces en el camino cerrado alrededor de las aristas de una región se dibuja un lazo en el vértice de la región. 
+%imagen 1	%imagen 2
+Otro ejemplo:
+Sea G( V, E ) un grafo plano, se llama grafo dual de G y se denota por G*, aquel construido de la siguiente manera:
+a) Se elige un punto vi en cada cara Fi de G. Estos puntos son los vértices de G*.
+b) Por cada arista e∈   E se traza una línea e*que atraviesa únicamente la arista e, y se unen los vértices vi pertenecientes a las caras adjuntas a e. Estas líneas son las aristas de G*.A continuación se ilustra este procedimiento de construcción con un ejemplo:
+
+G: Grafo planar
+G’: Grafo dual G*
+%imagen 3
