@@ -1,35 +1,62 @@
 \documentclass[spanish,utf8]{beamer}
 \usepackage{amsmath,mathrsfs,amsfonts}
-\usepackage{graphicx}
+%\usepackage[figurename=Figura]{caption}
+\input{generalcommands.tex}
+\usetheme{CambridgeUS}
+\usecolortheme{dolphin}
+\setbeamercovered{transparent}
 
-\title{El teorema de los cuatro colores}
-\subtitle{Introducción a la matemática discreta CM--254}
-\author{Gabriel Quiroz \and Carlos Aznarán \and Franss Cruz \and Jose Navío}
-\institute[UNI]{Universidad Nacional de Ingeniería}
+\title[Teorema de los cuatro colores]{El teorema de los cuatro colores}
+\subtitle{Introducción a la matemática discreta CM -- 254}
+
+\author[Grupo N$^\circ6$]{%
+	\texorpdfstring{%
+		\begin{columns}
+			\column{.3\linewidth}
+			\centering
+			C. Aznarán Laos \inst{1,2}
+			\column{.3\linewidth}
+			\centering
+			F. Cruz Ordoñez \inst{1,2}
+		\end{columns}
+		\vspace{12pt}
+		\begin{columns}
+			\column{.3\linewidth}
+			\centering
+			G. Quiroz Gómez \inst{1,2}
+			\column{.3\linewidth}
+			\centering
+			J. Navío Torres \inst{1,2}
+		\end{columns}
+	}
+	{Author 1, Author 2, Author 3}
+}
+
+\institute[FC -- UNI]{\inst{1} Facultad de Ciencias \and \inst{2} Universidad Nacional de Ingeniería
+}
 \date{18 de junio del 2018}
-%\usetheme{CambridgeUS}
+
 %\usetheme{Warsaw}
 %\usetheme{Pittsburgh}
 %\usetheme{Rochester}
 %\usetheme{EastLansing}
-\usetheme{Frankfurt}
+%\usetheme{Frankfurt}
 %\usetheme{default}
 %\usetheme{Bergen}
 %\usetheme{Boadilla}
 \graphicspath{{images/}}
+
 \begin{document}
 \maketitle
 \section{Introducción}
 
-\begin{frame}{Indice}
-\tableofcontents    
+\begin{frame}{\contentsname}
+\tableofcontents
 \end{frame}
 
-\begin{frame}{¿Qué dice la conjetura?}
-\begin{block}{}
-Bastan 4 colores para colorear un mapa geográfico
-plano, de modo que dos países con frontera común
-tengan diferente color.
+\begin{frame}{\insertsection}
+\begin{block}{¿Qué dice la conjetura?}
+Bastan cuatro colores para colorear un mapa geográfico plano, de modo que dos países con frontera común tengan colores diferentes.
 \end{block}
 
 \begin{minipage}[c]{5cm}
@@ -40,13 +67,13 @@ tengan diferente color.
 \end{figure}
 \end{minipage}
 \begin{minipage}[c]{5cm}
-\begin{block}{Mapa conexo}
-\emph{ Un mapa es conexo (de una pieza) y cada una de sus regiones también es conexa.}
+\begin{block}{Mapa conexo}\em
+Un mapa es conexo\footnote{de una pieza} y cada una de sus regiones también es conexa.
 \end{block}
 \end{minipage}
 \end{frame}
 
-\begin{frame}{}
+\begin{frame}{\insertsection}
 \begin{block}{}
 Dos regiones no pueden tocarse solo en un punto, y así, se pueden ignorar regiones con una única línea frontera.
 \end{block}
@@ -61,38 +88,42 @@ Es un problema topológico: no importa la forma de las regiones, sino como está
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Leonhard Euler}
+\begin{frame}{\insertsection}
+Leonhard Euler
 \begin{block}{Fórmula de Euler para mapas:}
 Núm(caras) – Núm(aristas) + Núm(vértices) = 2
 \end{block}
 \begin{center}
-   \includegraphics[scale=0.08]{poliedros2.jpg}
+   \includegraphics[height=5cm]{poliedros2.jpg}
 \end{center}
 \end{frame}
 \section{Historia}
 
-\begin{frame}{Linea del Tiempo}
-\includegraphics[scale=0.35]{linea.png}    
+\begin{frame}{\insertsection}
+Línea del Tiempo
+\centering
+\includegraphics[width=12.5cm]{linea.png}    
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{frame}{Personajes}
-%\begin{minipage}[c]{3cm}
-%\includegraphics[width=2.5cm,higth=2.5cm]{Francis_guthrie} \\
-%\centering \bf{FRANCIS GUTHRIE}
-%\end{minipage}
-%\begin{minipage}[c]{4cm}
-%\includegraphics[width=2.5cm,higth=2.5cm]{morgan.jpg}\\
-%\centering\bf{AUGUST DE MORGAN}
-%\end{minipage}
-%\begin{minipage}[c]{3cm}
-%\includegraphics[width=2.5cm,higth=2.5cm]{kempe.jpeg}\\
-%\centering\bf{ALFRED BRAY KEMPE}
-%\end{minipage}
 
-%\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Fechas importantes}
+\begin{frame}{Personajes}
+\centering
+\begin{minipage}[c]{3cm}
+\includegraphics[width=2.5cm]{Francis_guthrie} \\
+\centering \bf{FRANCIS GUTHRIE}
+\end{minipage}
+\begin{minipage}[c]{4cm}
+\includegraphics[width=2.5cm]{morgan.jpg}\\
+\centering\bf{AUGUST DE MORGAN}
+\end{minipage}
+\begin{minipage}[c]{3cm}
+\includegraphics[width=2.5cm]{kempe.jpeg}\\
+\centering\bf{ALFRED BRAY KEMPE}
+\end{minipage}
+\end{frame}
+
+\begin{frame}{\insertsection}
+Fechas importantes
 \begin{itemize}
     \item 1852: Francis Guthrie plantea el problema a su hermano Frederick y éste a Augustus de Morgan.
     
@@ -112,10 +143,10 @@ Núm(caras) – Núm(aristas) + Núm(vértices) = 2
 \end{itemize}   
 \end{frame}
 
-\begin{frame}{Francis Guthrie}
+\begin{frame}{\insertsection}
 \begin{flushright}
-\begin{block}{}
-Francis Guthrie (1839-1899) abogado y botánico, observa que puede colorear un mapa complejo de los cantones de Inglaterra con 4 colores. En 1852, enuncia el problema a su hermano Frederick (University College London) y a éste a Augustus de Morgan. Francis Guthrie observa que 3 colores no son suficientes, con el diagrama crítico:
+\begin{block}{Francis Guthrie (1839-1899)}
+Abogado y botánico, observa que puede colorear un mapa complejo de los cantones de Inglaterra con 4 colores. En 1852, enuncia el problema a su hermano Frederick (University College London) y a éste a Augustus de Morgan. Francis Guthrie observa que 3 colores no son suficientes, con el diagrama crítico:
 \end{block}
 \begin{figure}
   \includegraphics[scale=0.3]{diagrama.jpg}
@@ -124,40 +155,38 @@ Francis Guthrie (1839-1899) abogado y botánico, observa que puede colorear un m
 \end{flushright}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{August de Morgan}
+\begin{frame}{\insertsection}
+August de Morgan
 \begin{block}{Difusión del teorema}
-Augustus de Morgan (1806-1871) estaba muy interesado en la conjetura de los 4 colores y difundió entre sus colegas su importancia. Una de las primeras personas con las que “habló” fue con el matemático y físico irlandés Sir William Rowan Hamilton (1805-1865), que no compartía el interés de De Morgan por el problema. Le escribe una carta el 23 de octubre de 1852.
+Augustus de Morgan (1806-1871) estaba muy interesado en la conjetura de los 4 colores y difundió entre sus colegas su importancia. Una de las primeras personas con las que ``habló'' fue con el matemático y físico irlandés Sir William Rowan Hamilton (1805-1865), que no compartía el interés de De Morgan por el problema. Le escribe una carta el 23 de octubre de 1852.
 \end{block}
 
 \begin{block}{Respuesta de Hamilton}
-Cuatro días después, Hamilton le contesta: “I am not likely to attempt your “quaternion” of colours very soon”
+Cuatro días después, Hamilton le contesta: ``I am not likely to attempt your “quaternion” of colours very soon''.
 \end{block}    
 \end{frame}
 
-\begin{frame}{Primera demostración}
-\begin{block}{}
+\begin{frame}{\insertsection}
+\begin{block}{Primera demostración}
 Kempe se interesa por el problema de los 4 colores tras la pregunta de Cayley en la London Mathematical Society.
 \end{block}
 
 \begin{block}{}
 En junio de 1879 obtiene su solución del teorema de los 4 colores y lo publica en el Amer. Journal of Maths. En 1880, publica unas versiones. simplificadas de su prueba, donde corrige algunas erratas de su prueba original, pero deja intacto el error fatal.
 \end{block}
-    
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{El error fatal}
-    
+    \end{frame}
+
+\begin{frame}{\insertsection}
+El error fatal
 \end{frame}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Demostración definitiva}
-    
+\begin{frame}{\insertsection}
+Demostración definitiva
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Aplicaciones}
-\begin{frame}{}
-    
+\begin{frame}{\insertsection}
+
 \end{frame}
 
 \end{document}
