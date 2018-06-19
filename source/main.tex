@@ -77,7 +77,7 @@
 	\tableofcontents[
 	currentsection,
 	sectionstyle=show/show,
-	subsectionstyle=show/shaded/hide
+	subsectionstyle=hide/hide/hide%-show/shaded/hide
 	]
 \end{frame}
 }
@@ -102,6 +102,8 @@
 \begin{alertblock}{Pregunta} % 1852 Francis Guthrie
 	¿Es posible colorear cualquier mapa geográfico plano usando solamente \emph{cuatro colores}, de modo que dos países con frontera común tengan colores diferentes? 
 \end{alertblock}
+
+\pause
 
 \begin{minipage}[c]{6cm}
 	\begin{figure}
@@ -128,43 +130,52 @@
 \subsection{Formulación de la conjetura}
 
 \begin{frame}{\insertsection}\transblindsvertical
-\begin{flushright}
-	\begin{block}{Francis Guthrie (1839-1899)}
-		Abogado y botánico, observa que puede colorear un mapa complejo de los cantones de Inglaterra con 4 colores. En 1852, enuncia el problema a su hermano Frederick (University College London) y a éste a Augustus de Morgan. Francis Guthrie observa que 3 colores no son suficientes, con el diagrama crítico:
-	\end{block}
-	\begin{figure}
-		\includegraphics[scale=0.3]{diagrama.jpg}
-		\caption{Diagrama Crítico}
-	\end{figure}
-\end{flushright}
+\begin{block}{Francis Guthrie (1839-1899)}
+Abogado y botánico, observa que puede colorear un mapa complejo de los cantones de Inglaterra con 4 colores. En 1852, enuncia el problema a su hermano Frederick (University College London) y a éste a Augustus de Morgan. Francis Guthrie observa que 3 colores no son suficientes, con el diagrama crítico:
+\end{block}
+
+\pause
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.3]{diagrama.jpg}
+\caption{Diagrama Crítico.}
+\end{figure}
 \end{frame}
 
 \begin{frame}{\insertsubsection}
 \begin{remark}{}
 	Dos regiones no pueden tocarse solo en un punto, y así, se pueden ignorar regiones con una única línea frontera.
 \end{remark}
-\begin{center}
-	\includegraphics[height=3cm]{fronteras.png}
-\end{center}
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=3.3cm]{fronteras.png}
+\caption{Distinciones de frontera de un mapa.}
+\end{figure}
 
 Es un problema topológico: no importa la forma de las regiones, sino como están colocadas unas respecto a otras.
-\end{frame}
-
-\begin{frame}{\insertsubsection}\transblindsvertical
-Leonhard Euler
-\begin{theorem}[Fórmula de Euler para mapas]
-	$$
-	\#\text{caras} - \#\text{aristas} + \#\text{vértices} = 2.
-	$$
-\end{theorem}
-\begin{center}
-	\includegraphics[height=5cm]{poliedros2.jpg}
-\end{center}
 \end{frame}
 
 \subsection{Primer intento de demostración: Las cadenas de \citeauthor{kempe}}
 
 \subsection{El error fatal de \citeauthor{kempe} por Heawood}
+
+\begin{frame}{\insertsubsection}\transblindsvertical
+Leonhard Euler
+\begin{theorem}[Fórmula de Euler para mapas]
+$$
+\#\text{caras} - \#\text{aristas} + \#\text{vértices} = 2.
+$$
+\end{theorem}
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=5cm]{poliedros2.jpg}
+\caption{Grafos de cada uno de los cinco sólidos platónicos.}
+\end{figure}
+
+\end{frame}
 
 \subsection{Algunas definiciones más}
 
@@ -228,9 +239,9 @@ Sea $G=(V,E)$ un grafo plano, se llama grafo dual de $G$ y se denota por $G^{\as
 \subsection{Idea clave: La reducibilidad de mapas de \citeauthor{birkhoff}}
 
 \begin{frame}
-\frametitle{\insertsection:\insertsubsection}
+\frametitle{\insertsubsection}
 \begin{theorem}[\citeauthor{birkhoff}]
-\begin{enumerate}
+\begin{enumerate}\normalfont
 	\item La conjetura de los cuatro colores puede ser falsa.
 	
 	\item Es posible hallar una colección finita de configuraciones reducibles tal que cualquier mapa planar debe contener uno de ellos (lo que probaría la conjetura de cuatro colores)
@@ -303,22 +314,15 @@ Kempe se interesa por el problema de los 4 colores tras la pregunta de Cayley en
 \begin{block}{}
 En junio de 1879 obtiene su solución del teorema de los 4 colores y lo publica en el Amer. Journal of Maths. En 1880, publica unas versiones. simplificadas de su prueba, donde corrige algunas erratas de su prueba original, pero deja intacto el error fatal.
 \end{block}
-    \end{frame}
-
-\begin{frame}{\insertsection}\transblindsvertical
-El error fatal
-\end{frame}
-
-\begin{frame}{\insertsection}\transblindsvertical
-Demostración definitiva
 \end{frame}
 
 \section{Aplicaciones}
 
 \subsection{Juego Hex}
 
-\begin{frame}{\insertsection}\transblindsvertical
-
+\begin{frame}[c]{\insertsection}\transblindsvertical
+\centering\LARGE
+\color{red}El juego HEX
 \end{frame}
 
 \section{Conclusiones}
