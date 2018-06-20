@@ -1,17 +1,18 @@
 % !TeX document-id = {2dbf9b71-bbba-4dd9-bbd6-409e1a74ac36}
 % !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape] | txs:///biber | txs:///pdflatex/[--shell-escape]
-\documentclass[spanish,utf8]{beamer}
+\PassOptionsToPackage{svgnames}{xcolor}
+\documentclass[spanish, utf8]{beamer} % handout
 \usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
+%\usepackage{array}
 \usepackage{amsmath,mathrsfs,amsfonts,amsthm}
+\usepackage{adjustbox}
 \usepackage{caption}
 %\usepackage[figurename=Figura]{caption}
-\usepackage[backend=biber,style=numeric, defernumbers=true, sorting=ynt]{biblatex}
+\usepackage[backend=biber,style=numeric, defernumbers=true, sorting=ynt,maxbibnames=4,maxcitenames=4]{biblatex}
 \addbibresource{bibliography/reference.bib}
 \input{generalcommands.tex}
 \theoremstyle{definition}
-%\newtheorem{theorem}{Teorema}[section]
-%\newtheorem{definition}{Definición}
 \newtheorem{remark}{Observación}
 
 \usetheme{CambridgeUS}
@@ -21,7 +22,8 @@
 
 \usefonttheme[onlymath]{serif}
 
-\setbeamercovered{transparent}
+%\setbeamercovered{transparent}
+\setbeamercovered{dynamic}
 
 \setbeamertemplate{footline}[frame number]{}
 \setbeamertemplate{navigation symbols}{}
@@ -60,14 +62,6 @@
 }
 \date{18 de junio del 2018}
 
-%\usetheme{Warsaw}
-%\usetheme{Pittsburgh}
-%\usetheme{Rochester}
-%\usetheme{EastLansing}
-%\usetheme{Frankfurt}
-%\usetheme{default}
-%\usetheme{Bergen}
-%\usetheme{Boadilla}
 \graphicspath{{images/}}
 
 \AtBeginSubsection[]
@@ -77,7 +71,7 @@
 	\tableofcontents[
 	currentsection,
 	sectionstyle=show/show,
-	subsectionstyle=hide/hide/hide%-show/shaded/hide
+	subsectionstyle=show/shaded/hide%-show/shaded/hide
 	]
 \end{frame}
 }
@@ -88,263 +82,338 @@
 \maketitle
 \end{frame}
 
-\section{Introducción}
-
 \begin{frame}{\contentsname}\transblindsvertical
 \tableofcontents
 \end{frame}
 
+\section{Introducción}
+
 \subsection{El problema de los cuatro colores}
 
-
-\begin{frame}{\insertsubsection}\transblindsvertical
+\begin{frame}\transblindsvertical
+\frametitle{\insertsubsection}
 
 \begin{alertblock}{Pregunta} % 1852 Francis Guthrie
-	¿Es posible colorear cualquier mapa geográfico plano usando solamente \emph{cuatro colores}, de modo que dos países con frontera común tengan colores diferentes? 
+¿Es posible colorear cualquier mapa geográfico plano usando solamente \emph{cuatro colores}, de modo que dos países con frontera común tengan colores distintos? 
 \end{alertblock}
 
-\pause
+\
 
+\visible<2>{
 \begin{minipage}[c]{6cm}
-	\begin{figure}
-		\centering
-		\includegraphics[width=4cm]{mapa-4-colores_HR.jpg}
+	\begin{figure}[H]
+		\includegraphics[width=4.2cm]{mapa-4-colores_HR.jpg}
 		\caption{Mapa político coloreado}
 	\end{figure}
-\end{minipage}
-\begin{minipage}[c]{5cm}
+\end{minipage}%\vspace{-1cm}
+\begin{minipage}[c]{5.8cm}
 	\begin{definition}[Mapa conexo]
-		Un mapa es conexo\footnote{de una pieza} y cada una de sus regiones también es conexa.
+	Un mapa es conexo\footnote{De una sola pieza.} y cada una \linebreak de sus regiones también es conexa.
 	\end{definition}
 \end{minipage}
+}
+\end{frame}
+
+\begin{frame}{\insertsubsection}
+\begin{remark}{}
+Dos regiones no pueden tocarse solo en un punto, y así, se pueden ignorar regiones con una única línea frontera.
+\end{remark}
+
+\visible<2>{
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=3.3cm]{fronteras.png}
+	\caption{Distinciones de frontera de un mapa.}
+\end{figure}
+
+Es un problema topológico: no importa la forma de las regiones, sino como están colocadas unas respecto a otras.
+}
 \end{frame}
 
 {
-	\usebackgroundtemplate{\centering\includegraphics[width=\paperwidth]{crop}}%height=\paperheight,
+	\usebackgroundtemplate{\centering\includegraphics[width=\paperwidth]{crop}}
 	\begin{frame}[plain]
 \end{frame}
 }
 
-\section{Un poco de historia}
+\subsection{Algunas fechas importantes}
 
-\subsection{Formulación de la conjetura}
+\begin{frame}\transblindsvertical
+\frametitle{\insertsubsection}
 
-\begin{frame}{\insertsection}\transblindsvertical
+\begin{itemize}
+	\item 1852: Francis Guthrie plantea el problema a su hermano Frederick y éste a Augustus de Morgan.
+	
+	\item  1878: Arthur Cayley publica el enunciado de la conjetura.
+	
+	\item  1879: Sir Alfred Bray Kempe publica su ``demostración''.
+	
+	\item  1913: George Birkhoff introduce la noción de configuración reducible.
+	
+	\item  1960: Se introduce el llamado método de descarga.
+	
+	\item  1969: Avances de Heinrich Heesch en reducibilidad y obtención de conjuntos inevitables de configuraciones.
+	
+	\item 1976: Ken Appel y Wolfgang Haken prueban con ayuda de un ordenador que sus 1.482 configuraciones son reducibles (50 días de cálculo).
+	
+	\item  1996: N. Robertson, D.P. Sanders, P. Seymour y R. Thomas mejoran la demostración con ayuda de ordenador (sólo 633 configuraciones) y automatizan la prueba de la inevitabilidad.
+\end{itemize}   
+\end{frame}
+
+\section{El ``camino'' hacia la demostración}
+
+\subsection{La formulación de la conjetura}
+
+\begin{frame}\transblindsvertical
+\frametitle{\insertsubsection}
+
 \begin{block}{Francis Guthrie (1839-1899)}
 Abogado y botánico, observa que puede colorear un mapa complejo de los cantones de Inglaterra con 4 colores. En 1852, enuncia el problema a su hermano Frederick (University College London) y a éste a Augustus de Morgan. Francis Guthrie observa que 3 colores no son suficientes, con el diagrama crítico:
 \end{block}
-
-\pause
-
+\visible<2>{
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.3]{diagrama.jpg}
 \caption{Diagrama Crítico.}
 \end{figure}
+}
 \end{frame}
 
-\begin{frame}{\insertsubsection}
-\begin{remark}{}
-	Dos regiones no pueden tocarse solo en un punto, y así, se pueden ignorar regiones con una única línea frontera.
-\end{remark}
+\begin{frame}\transblindsvertical
+\frametitle{\insertsection}
+
+\begin{alertblock}{Difusión del teorema}
+Augustus de Morgan (1806-1871) estaba muy interesado en la conjetura de los 4 colores y difundió entre sus colegas su importancia. Una de las primeras personas con las que ``habló'' fue con el matemático y físico irlandés Sir William Rowan Hamilton (1805-1865), que no compartía el interés de De Morgan por el problema. Le escribe una carta el 23 de octubre de 1852.
+\end{alertblock}
+
+\visible<2>{
+\begin{alertblock}{Respuesta de Hamilton}
+Cuatro días después, Hamilton le contesta: ``I am not likely to attempt your ``quaternion'' of colours very soon''.
+\end{alertblock}
+} 
+\end{frame}
+
+\subsection{La primera ``demostración'': las cadenas de \citeauthor{kempe}}
+
+\begin{frame}\transblindsvertical
+\frametitle{\insertsubsection}
+
+Kempe se interesa por el problema de los 4 colores tras la pregunta de Cayley en la London Mathematical Society.
+
+\
+
+\visible<2>{
+En junio de 1879 obtiene su solución del teorema de los 4 colores y lo publica en el Amer. Journal of Maths. En 1880, publica unas versiones. simplificadas de su prueba, donde corrige algunas erratas de su prueba original, pero deja intacto el error fatal.
+}
+
+\end{frame}
+
+\subsection{Heawood y el error fatal de \citeauthor{kempe}}
+
+\begin{frame}%[allowframebreaks]
+\frametitle{\insertsubsection}
+
+\begin{definition}[Número cromático] 
+	Sea $G=(V,E)$ un grafo y sea $k$ un número natural. Una aplicación $c\colon V\to \{1,2,\ldots k\}$ se llama \emph{\color{DarkBlue}coloración del grafo} $G$ si $c(x)\neq c(y)$ se cumple para cada rama $\{x,y\}\in E$. \linebreak El \emph{\color{DarkBlue}número cromático} de $G$, denotado por $\chi(G)$, es el \emph{\color{red}mínimo valor} de $k$ para el cual existe una coloración $c\colon V(G)\to\{1,2\ldots,k\}$.
+\end{definition}
+
+\visible<2>{
+\begin{definition}[Grafo Dual]
+	Sea $G=(V,E)$ un grafo planar con un dibujo planar fijo. Denotamos por $\mathcal{F}$ el conjunto de caras de $G$. Definimos un grafo, con posibles lazos y ramas múltiples, como $(\mathcal{F},E,\varepsilon)$, donde $\varepsilon$ se define como $\varepsilon(e)=\{F_i,F_j\}$ siempre que la rama $e$ sea una frontera común de las caras $F_i$ y $F_j$.
+	
+	Este grafo $(\mathcal{F},E,\varepsilon)$ se le llama el dual de $G$ y se denota por $G^{\ast}$.	
+\end{definition}
+}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+\frametitle{\insertsubsection}
+
+\begin{example}[Grafos Duales]
+Para construir una gráfica dual de un grafo plano $G$ se debe colocar un vértice dentro de cada región de $G$ e incluir la región infinita de $G$. Para cada arista compartida por las $2$ regiones, se debe dibujar una arista que conecte a los vértices dentro de estas regiones y para cada arista que se recorre $2$ veces en el camino cerrado alrededor de las aristas de una región se dibuja un lazo en el vértice de la región. 
+\end{example}
 
 \begin{figure}[H]
+\captionsetup{justification=centering,margin=0.5cm}
 \centering
-\includegraphics[height=3.3cm]{fronteras.png}
-\caption{Distinciones de frontera de un mapa.}
+\begin{minipage}{.5\textwidth}
+	\centering
+	\includegraphics[width=3cm]{example1.png}
+	\caption{Grafo $G$.}
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+	\centering
+	\includegraphics[width=3cm]{example2.png}
+	\caption{Grafo $G$ y su dual $G^{\ast}$.}
+\end{minipage}
 \end{figure}
 
-Es un problema topológico: no importa la forma de las regiones, sino como están colocadas unas respecto a otras.
+\begin{example}[Grafos duales]
+Sea $G=(V,E)$ un grafo plano, se llama grafo dual de $G$ y se denota por $G^{\ast}$, aquel construido de la siguiente manera:
+
+\begin{enumerate}
+	\item Se elige un punto $v_i$ en cada cara $F_i$ de $G$. Estos puntos son los vértices de $G^{\ast}$.
+	
+	\item Por cada arista $e\in E$ se traza una línea $e^{\ast}$ que atraviesa únicamente la arista $e$, y se unen los vértices $v_i$ pertenecientes a las caras adjuntas a $e$. Estas líneas son las aristas de $G^{\ast}$. A continuación se ilustra este procedimiento de construcción con un ejemplo:
+\end{enumerate}
+\end{example}
+
+\begin{figure}[H]
+\captionsetup{justification=centering,margin=0.5cm}
+\centering
+\includegraphics{example3.png}
+\caption{Grafo planar $G$ y	su grafo dual $G^{\prime}=G^{\ast}$.}
+\end{figure}
+
 \end{frame}
 
-\subsection{Primer intento de demostración: Las cadenas de \citeauthor{kempe}}
+\begin{frame}\transblindsvertical
+\frametitle{\insertsubsection}
 
-\subsection{El error fatal de \citeauthor{kempe} por Heawood}
-
-\begin{frame}{\insertsubsection}\transblindsvertical
-Leonhard Euler
 \begin{theorem}[Fórmula de Euler para mapas]
-$$
-\#\text{caras} - \#\text{aristas} + \#\text{vértices} = 2.
-$$
+\begin{equation*}
+\#\text{caras} - \#\text{aristas} + \#\text{vértices} = 2.	
+\end{equation*}
 \end{theorem}
 
+\visible<2>{
 \begin{figure}[H]
 \centering
 \includegraphics[height=5cm]{poliedros2.jpg}
 \caption{Grafos de cada uno de los cinco sólidos platónicos.}
 \end{figure}
+}
 
 \end{frame}
 
-\subsection{Algunas definiciones más}
-
-\begin{frame}[allowframebreaks]
-\frametitle{\insertsubsection}
-
-\begin{definition}[Número cromático] 
-Sea $G=(V,E)$ un grafo y sea $k$ un número natural. Una aplicación $c:V\to \{1,2,\ldots k\}$ se llama \emph{coloración del grafo} $G$ si $c(x)\neq c(y)$ se cumple para cada rama $\{x,y\}\in E$. \linebreak El número cromático de $G$, denotado por $x(G)$, es el \emph{mínimo valor} de $k$ para el cual existe una coloración $c:V(G)\to {1,2\ldots,k}$.
-\end{definition}
-
-\begin{definition}[Grafo Dual]
-Sea $G=(V,E)$ un grafo planar con un dibujo planar fijo. Denotamos $\mathcal{F}$ por el conjunto de caras de $G$. Definimos un grafo, con posibles lazos y ramas múltiples, como $(\mathcal{F},E,\epsilon)$, donde $\epsilon$ se define como $\epsilon(e)={F_i,F_J]}$ siempre que la rama $\epsilon$ sea una frontera común de las caras $F_i,F_j$ (también permitimos que $F_i=F_j$, en el caso en que la misma cara este ambos lados de una rama dada).
-
-Este grafo $(\mathcal{F},E,\epsilon)$ se le llama el dual (\emph{geométrico}) de $G$ y se denota por $G^*$.	
-\end{definition}
-\end{frame}
-
-\subsection{Algunos ejemplos}
-
-\begin{frame}[allowframebreaks]
-\frametitle{\insertsubsection}
-
-\begin{example}[Ejemplo de Grafos Duales]
-Para construir una gráfica dual de un grafo plano $G$ se debe colocar un vértice dentro de cada región de $G$ e incluir la región infinita de $G$. Para cada arista compartida por las $2$ regiones, se debe dibujar una arista que conecte a los vértices dentro de estas regiones y para cada arista que se recorre $2$ veces en el camino cerrado alrededor de las aristas de una región se dibuja un lazo en el vértice de la región. 
-\end{example}
-
-\begin{figure}[H]
-	\captionsetup{justification=centering,margin=0.5cm}
-	\centering
-	\begin{minipage}{.5\textwidth}
-		\centering
-		\includegraphics[width=3cm]{example1.png}
-		\caption{Grafo $G$.}
-	\end{minipage}%
-	\begin{minipage}{0.5\textwidth}
-		\centering
-		\includegraphics[width=3cm]{example2.png}
-		\caption{Grafo $G$ y su dual $G^{\ast}$.}
-	\end{minipage}
-\end{figure}
-
-\begin{example}[Otro ejemplo]
-Sea $G=(V,E)$ un grafo plano, se llama grafo dual de $G$ y se denota por $G^{\ast}$, aquel construido de la siguiente manera:
-
-\begin{enumerate}
-	\item Se elige un punto $v_i$ en cada cara $F_i$ de $G$. Estos puntos son los vértices de $G^{\ast}$.
-
-	\item Por cada arista $e\in E$ se traza una línea $e^{\ast}$ que atraviesa únicamente la arista $e$, y se unen los vértices $v_i$ pertenecientes a las caras adjuntas a $e$. Estas líneas son las aristas de $G^{\ast}$. A continuación se ilustra este procedimiento de construcción con un ejemplo:
-	\end{enumerate}
-\end{example}
-
-\begin{figure}[H]
-	\captionsetup{justification=centering,margin=0.5cm}
-	\centering
-	\includegraphics{example3.png}
-	\caption{Grafo planar $G$ y	su grafo dual $G^{\prime}=G^{\ast}$.}
-\end{figure}
-
-\end{frame}
-
-\subsection{Idea clave: La reducibilidad de mapas de \citeauthor{birkhoff}}
+\subsection{Idea clave: la reducibilidad de mapas de \citeauthor{birkhoff}}
 
 \begin{frame}
 \frametitle{\insertsubsection}
-\begin{theorem}[\citeauthor{birkhoff}]
-\begin{enumerate}\normalfont
+
+\begin{theorem}[\citeauthor{birkhoff}]\normalfont
+Solo una de las siguientes afirmaciones es verdadera:
+
+\begin{enumerate}
 	\item La conjetura de los cuatro colores puede ser falsa.
 	
-	\item Es posible hallar una colección finita de configuraciones reducibles tal que cualquier mapa planar debe contener uno de ellos (lo que probaría la conjetura de cuatro colores)
+	\item Es posible hallar una colección finita de configuraciones reducibles \linebreak tal que cualquier mapa planar debe contener uno de ellos \linebreak (lo que probaría la conjetura de cuatro colores).
 	
-	\item la conjetura de cuatro colores puede ser cierta, pero pueden requerirse métodos más complicados para una prueba
+	\item La conjetura de cuatro colores puede ser cierta, pero pueden \linebreak requerirse métodos más complicados para una prueba.
 \end{enumerate}
 \end{theorem}
 \end{frame}
 
-\subsection{Demostración de \citeauthor{appel}}
+\subsection{El método de descarga de \citeauthor{appel}}
 
-\subsubsection{Método de descarga}
-\subsubsection{Método de reducibilidad}
-
-\subsection{Demostración de \citeauthor{robertson}}
-
-%\begin{frame}{Personajes}
-%\centering
-%\begin{minipage}[c]{3cm}
-%\includegraphics[width=2.5cm]{Francis_guthrie} \\
-%\centering \bf{FRANCIS GUTHRIE}
-%\end{minipage}
-%\begin{minipage}[c]{4cm}
-%\includegraphics[width=2.5cm]{morgan.jpg}\\
-%\centering\bf{AUGUST DE MORGAN}
-%\end{minipage}
-%\begin{minipage}[c]{3cm}
-%\includegraphics[width=2.5cm]{kempe.jpeg}\\
-%\centering\bf{ALFRED BRAY KEMPE}
-%\end{minipage}
-%\end{frame}
-
-\begin{frame}{\insertsection}\transblindsvertical
-Fechas importantes
-\begin{itemize}
-    \item 1852: Francis Guthrie plantea el problema a su hermano Frederick y éste a Augustus de Morgan.
-    
-    \item  1878: Arthur Cayley publica el enunciado de la conjetura.
-    
-    \item  1879: Sir Alfred Bray Kempe publica su demostración.
-    
-    \item  1913: George Birkhoff introduce la noción de configuración reducible.
-    
-    \item  1960: Se introduce el llamado método de descarga.
-    
-    \item  1969: Avances de Heinrich Heesch en reducibilidad y obtención de conjuntos inevitables de configuraciones.
-    
-    \item 1976: Ken Appel y Wolfgang Haken prueban con ayuda de un ordenador que sus 1.482 configuraciones son reducibles (50 días de cálculo).
-    
-    \item  1996: N. Robertson, D.P. Sanders, P. Seymour y R. Thomas mejoran la demostración con ayuda de ordenador (sólo 633 configuraciones) y automatizan la prueba de la inevitabilidad.
-\end{itemize}   
-\end{frame}
-
-\begin{frame}{\insertsection}\transblindsvertical
-August de Morgan
-\begin{block}{Difusión del teorema}
-Augustus de Morgan (1806-1871) estaba muy interesado en la conjetura de los 4 colores y difundió entre sus colegas su importancia. Una de las primeras personas con las que ``habló'' fue con el matemático y físico irlandés Sir William Rowan Hamilton (1805-1865), que no compartía el interés de De Morgan por el problema. Le escribe una carta el 23 de octubre de 1852.
-\end{block}
-
-\begin{block}{Respuesta de Hamilton}
-Cuatro días después, Hamilton le contesta: ``I am not likely to attempt your “quaternion” of colours very soon''.
-\end{block}    
-\end{frame}
-
-\begin{frame}{\insertsection}\transblindsvertical
-\begin{block}{Primera demostración}
-Kempe se interesa por el problema de los 4 colores tras la pregunta de Cayley en la London Mathematical Society.
-\end{block}
-
-\begin{block}{}
-En junio de 1879 obtiene su solución del teorema de los 4 colores y lo publica en el Amer. Journal of Maths. En 1880, publica unas versiones. simplificadas de su prueba, donde corrige algunas erratas de su prueba original, pero deja intacto el error fatal.
-\end{block}
-\end{frame}
+\subsection{Una nueva demostración de \citeauthor{robertson}}
 
 \section{Aplicaciones}
 
-\subsection{Juego Hex}
+\subsection{El juego Hex}
 
-\begin{frame}[c]{\insertsection}\transblindsvertical
-\centering\LARGE
-\color{red}El juego HEX
+\begin{frame}\transblindsvertical
+\frametitle{\insertsubsection}
+
+\begin{columns}[t]
+	\begin{column}{.3\textwidth}
+		\adjincludegraphics[width=.8\linewidth,valign=t]{diagrama.jpg}
+	\end{column}
+	\begin{column}{.7\textwidth}
+		\textbf{``Mientras contemplaba el famoso teorema de topología de cuatro colores. El juego se hizo popular en Dinamarca bajo el nombre de Polígono. El juego fue impreso en blocs de papel; y se vende como un juego de papel y lápiz. Durante meses, los periódicos daneses corrieron una serie de problemas de "Polígono". Albert Einstein mantuvo el juego en un estante en su estudio."}
+		
+		\hfill-- Piet Hein
+	\end{column}
+\end{columns}
+
+\vspace*{10pt}
+
+\begin{itemize}
+	\item Pollard's $p-1$ algorithm (1974)
+	\vspace*{10pt}
+	\item Dixon's Random Squares Algorithm (1981)
+	\vspace*{10pt}
+	\item Quadratic Sieve (QS): Pomerance (1981)
+\end{itemize}
 \end{frame}
 
+%\begin{frame}\transblindsvertical
+%\frametitle{\insertsubsection}
+%\begin{tabular}{p{.3\textwidth} p{.7\textwidth}}
+%	\adjincludegraphics[width=.8\linewidth,valign=t]{diagrama.jpg}
+%	&
+%	\raggedright\arraybackslash\textbf{``The problem of distinguishing prime numbers from composites, and of resolving composite numbers into their prime factors, is one of the most important and useful in all of arithmetic."}
+%	
+%	\hfill-- Carl Friedrich Gauss
+%\end{tabular}
+%
+%\vspace*{10pt}
+%
+%\begin{itemize}
+%	\item Pollard's $p-1$ algorithm (1974)
+%	\vspace*{10pt}
+%	\item Dixon's Random Squares Algorithm (1981)
+%	\vspace*{10pt}
+%	\item Quadratic Sieve (QS): Pomerance (1981)
+%	\vspace*{10pt}
+%	\item Williams' $p+1$ method (1982)
+%\end{itemize}
+%\end{frame}
+
 \section{Conclusiones}
+
 \subsection{Importancia del teorema para los matemáticos}
 
-\begin{frame}[allowframebreaks]{Referencias}\transblindsvertical
+\begin{frame}
+\frametitle{Agradecimientos}
+
+\begin{center}\Large
+	¡Muchas gracias!
+\end{center}
+
+Colaboradores:
+
+\begin{enumerate}
+	\item Elaboración de la línea de tiempo: José Navío.
+	\item Tipografía en \LaTeX{}: Franss Cruz y Oromion.
+	\item Explicación del contenido matemático: Gabriel Quiroz.
+	\item Esquema de la exposición: MSc. Fidel Jara Huanca.
+\end{enumerate}
+
+\
+
+{
+\color{DarkBlue}
+Presentación disponible en:
+}
+\begin{center}
+\url{https://github.com/carlosal1015/4colores}
+\end{center}
+
+\hfill
+
+\begin{flushright}
+Dudas, sugerencias o preguntas a
+
+\href{mailto:caznaranl@uni.pe}{caznaranl\MVAt uni.pe}
+\end{flushright}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]\transblindsvertical
+\frametitle{Referencias}
+
 \begin{itemize}
 	\item Libros
 	\nocite{*}
 	\printbibliography[heading=none,keyword=book]
+	
 	\item Artículos matemáticos
 	\printbibliography[heading=none,keyword=paper]
+	
 	\item Sitios web
 	\printbibliography[heading=none,keyword=online]
 \end{itemize}
 \end{frame}
 
 \end{document}
-
-%imagen 1	%imagen 2
-:
-
-G: Grafo planar
-G’: Grafo dual G*
-%imagen 3
