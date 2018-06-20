@@ -24,3 +24,71 @@
 		\setlength{\parsep}{\bibparsep}}}
 {\endlist}
 {\item}
+
+\usetikzlibrary{calc,shapes}
+
+%% styles for the hexboard
+\tikzset{
+	hexa/.style={ 
+		shape=regular polygon,
+		regular polygon sides=6,
+		minimum size=1cm/sin(60),
+		draw,
+		inner sep=0,
+		anchor=south,
+		%%fill=#1,
+		rotate=210,%%so ".corner 1" is at bottom of hexa shape
+	},
+	set hex board dimensions/.style={x=0.5cm, y=1cm*sin(60)},
+	my hex path/.style={line width=2pt,line cap=round},
+}
+
+\makeatletter
+\newif\if@surculus@shownodenames
+\def\showmynodenames{\@surculus@shownodenamestrue}
+\def\surculus@topcnt{4}
+\def\surculus@botcnt{5}
+\def\surculus@set@boardwidth#1{%%
+	\def\surculus@botcnt{#1}%%
+	\def\surculus@topcnt{\number\numexpr#1-1\relax}}
+
+%% Here's a command to set up the board.  The argument 
+%% is the width of widest row in the board
+\def\drawhexboard#1{%%
+	\surculus@set@boardwidth{#1}
+	\tikzset{set hex board dimensions}
+	\foreach \row in {1,...,\surculus@botcnt}{%
+		\foreach \pos in {1,...,\row}
+		{%%
+			\node[hexa=red!20] (H\row;\pos) at (2*\pos-\row,\row) {};
+			\if@surculus@shownodenames
+			\node at (H\row;\pos) {\row;\pos};
+			\fi
+		}
+	}
+	\def\startcnt{\number\numexpr\surculus@botcnt+1\relax}
+	\def\endcnt{\number\numexpr\surculus@topcnt+\surculus@botcnt\relax}
+	\foreach \row in {\endcnt,...,\startcnt}{%
+		\foreach \pos in {\endcnt,...,\row}{%
+			\edef\surculus@rowpos{\number\numexpr\pos-\row+1\relax}
+			\node[hexa=blue!10] (H\row;\surculus@rowpos) at (2*\pos-\row-2*\surculus@topcnt,\row) {};
+			\if@surculus@shownodenames
+			\node at (H\row;\surculus@rowpos) {\row;\surculus@rowpos};
+			\fi
+		}
+	}
+}
+
+%% command to assist in drawing the path around the hexagons.
+\def\drawhexpath(#1)#2{%%
+	\let\surculus@previous\relax%%
+	\foreach \x in {#2}
+	{ \ifx\relax\surculus@previous
+		\xdef\surculus@previous{\x}%%
+		%% for testing %% \node [circle,fill=red,inner sep=2pt] at (H#1.corner \x) {};
+		\else
+		\draw[my hex path]  (H#1.corner \surculus@previous) -- (H#1.corner \x);
+		\xdef\surculus@previous{\x}%%
+		\fi
+}}
+\makeatother

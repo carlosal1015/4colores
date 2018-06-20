@@ -1,0 +1,18 @@
+% https://tex.stackexchange.com/questions/141911/drawing-hex-boards
+\begin{tikzpicture}[rotate=90]
+	%\showmynodenames%%<-- must precede the creation of the board if you want to see node names
+	\drawhexboard{10}
+	\draw[my hex path] ($(H1;1.corner 1)-(0,1cm)$) -- (H1;1.corner 1);
+	\drawhexpath(1;1){1,2,3,4}
+	\drawhexpath(2;2){6,5}
+	\drawhexpath(3;2){1,2,3,4,5,6}
+	\drawhexpath(3;1){2,1,6,5}
+	\drawhexpath(4;1){1,2,3}
+	\drawhexpath(5;2){1,2,3,4,5}
+	
+	\draw[my hex path] ($(H10;10.corner 3)+(1cm,0)$) -- (H10;10.corner 3);
+	\drawhexpath(10;10){3,2,1,6,5}
+	\drawhexpath(10;9){3,4}
+	\drawhexpath(11;8){2,3,4}
+	\drawhexpath(12;8){6,5,4,3,2}
+\end{tikzpicture}

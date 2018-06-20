@@ -4,10 +4,11 @@
 \documentclass[spanish, utf8]{beamer} % handout
 \usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
-%\usepackage{array}
 \usepackage{amsmath,mathrsfs,amsfonts,amsthm}
+\usepackage{tikz}
 \usepackage{adjustbox}
 \usepackage{caption}
+\usepackage{pythontex}
 %\usepackage[figurename=Figura]{caption}
 \usepackage[backend=biber,style=numeric, defernumbers=true, sorting=ynt,maxbibnames=4,maxcitenames=4]{biblatex}
 \addbibresource{bibliography/reference.bib}
@@ -94,7 +95,7 @@
 \frametitle{\insertsubsection}
 
 \begin{alertblock}{Pregunta} % 1852 Francis Guthrie
-¿Es posible colorear cualquier mapa geográfico plano usando solamente \emph{cuatro colores}, de modo que dos países con frontera común tengan colores distintos? 
+¿Es posible colorear cualquier mapa geográfico plano usando solamente \emph{\color{DarkBlue}cuatro colores}, de modo que dos países con frontera común tengan colores distintos? 
 \end{alertblock}
 
 \
@@ -106,7 +107,7 @@
 		\caption{Mapa político coloreado}
 	\end{figure}
 \end{minipage}%\vspace{-1cm}
-\begin{minipage}[c]{5.8cm}
+\begin{minipage}[c]{6cm}
 	\begin{definition}[Mapa conexo]
 	Un mapa es conexo\footnote{De una sola pieza.} y cada una \linebreak de sus regiones también es conexa.
 	\end{definition}
@@ -116,7 +117,7 @@
 
 \begin{frame}{\insertsubsection}
 \begin{remark}{}
-Dos regiones no pueden tocarse solo en un punto, y así, se pueden ignorar regiones con una única línea frontera.
+Dos regiones {\color{red}no pueden tocarse solo en un punto}, y así, se pueden ignorar regiones con una única línea frontera.
 \end{remark}
 
 \visible<2>{
@@ -156,7 +157,7 @@ Es un problema topológico: no importa la forma de las regiones, sino como está
 	
 	\item 1976: Ken Appel y Wolfgang Haken prueban con ayuda de un ordenador que sus 1.482 configuraciones son reducibles (50 días de cálculo).
 	
-	\item  1996: N. Robertson, D.P. Sanders, P. Seymour y R. Thomas mejoran la demostración con ayuda de ordenador (sólo 633 configuraciones) y automatizan la prueba de la inevitabilidad.
+	\item  1996: N. Robertson, D.P. Sanders, P. Seymour y R. Thomas mejoran la demostración con ayuda de ordenador (solo 633 configuraciones) y automatizan la prueba de la inevitabilidad.
 \end{itemize}   
 \end{frame}
 
@@ -167,9 +168,9 @@ Es un problema topológico: no importa la forma de las regiones, sino como está
 \begin{frame}\transblindsvertical
 \frametitle{\insertsubsection}
 
-\begin{block}{Francis Guthrie (1839-1899)}
+\begin{exampleblock}{Francis Guthrie (1839-1899)}
 Abogado y botánico, observa que puede colorear un mapa complejo de los cantones de Inglaterra con 4 colores. En 1852, enuncia el problema a su hermano Frederick (University College London) y a éste a Augustus de Morgan. Francis Guthrie observa que 3 colores no son suficientes, con el diagrama crítico:
-\end{block}
+\end{exampleblock}
 \visible<2>{
 \begin{figure}[H]
 \centering
@@ -183,7 +184,7 @@ Abogado y botánico, observa que puede colorear un mapa complejo de los cantones
 \frametitle{\insertsection}
 
 \begin{alertblock}{Difusión del teorema}
-Augustus de Morgan (1806-1871) estaba muy interesado en la conjetura de los 4 colores y difundió entre sus colegas su importancia. Una de las primeras personas con las que ``habló'' fue con el matemático y físico irlandés Sir William Rowan Hamilton (1805-1865), que no compartía el interés de De Morgan por el problema. Le escribe una carta el 23 de octubre de 1852.
+Augustus de Morgan (1806-1871) estaba muy interesado en la conjetura de los cuatro colores y lo difundió entre sus colegas. Una de las primeras personas con las que ``habló'' fue con el matemático y físico irlandés Sir William Rowan Hamilton (1805-1865), que no compartía el interés de De Morgan por el problema. Le escribe una carta el 23 de octubre de 1852.
 \end{alertblock}
 
 \visible<2>{
@@ -193,78 +194,111 @@ Cuatro días después, Hamilton le contesta: ``I am not likely to attempt your `
 } 
 \end{frame}
 
+\begin{frame}[allowframebreaks]
+\frametitle{Definiciones previas}
+
+\begin{definition}[Número cromático] 
+Sea $G=(V,E)$ un grafo y sea $k$ un número natural. Una aplicación $c\colon V\to \{1,2,\ldots k\}$ se llama \emph{\color{DarkBlue}coloración del grafo} $G$ si $c(x)\neq c(y)$ se cumple para cada rama $\{x,y\}\in E$. \linebreak El \emph{\color{DarkBlue}número cromático} de $G$, denotado por $\chi(G)$, es el \emph{\color{red}mínimo valor} de $k$ para el cual existe una coloración $c\colon V(G)\to\{1,2\ldots,k\}$.
+\end{definition}
+
+\begin{definition}[Grafo Dual]
+Sea $G=(V,E)$ un grafo planar con un dibujo planar fijo. Denotamos por $\mathcal{F}$ el conjunto de caras de $G$. Definimos un grafo, con posibles lazos y ramas múltiples, como $(\mathcal{F},E,\varepsilon)$, donde $\varepsilon$ se define como $\varepsilon(e)=\{F_i,F_j\}$ siempre que la rama $e$ sea una frontera común de las caras $F_i$ y $F_j$.
+
+Este grafo $\left(\mathcal{F},E,\varepsilon\right)$ se le llama el dual de $G$ y se denota por $G^{\ast}$.	
+\end{definition}
+
+
+\begin{example}[Grafos Duales]
+	Para construir una gráfica dual de un grafo plano $G$ se debe colocar un vértice dentro de cada región de $G$ e incluir la región infinita de $G$. Para cada arista compartida por las $2$ regiones, se debe dibujar una arista que conecte a los vértices dentro de estas regiones y para cada arista que se recorre $2$ veces en el camino cerrado alrededor de las aristas de una región se dibuja un lazo en el vértice de la región. 
+\end{example}
+
+\begin{figure}[H]
+	\captionsetup{justification=centering,margin=0.5cm}
+	\centering
+	\begin{minipage}{.5\textwidth}
+		\centering
+		\includegraphics[width=3cm]{example1.png}
+		\caption{Grafo $G$.}
+	\end{minipage}%
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=3cm]{example2.png}
+		\caption{Grafo $G$ y su dual $G^{\ast}$.}
+	\end{minipage}
+\end{figure}
+
+\begin{example}[Grafos duales]
+	Sea $G=(V,E)$ un grafo plano, se llama grafo dual de $G$ y se denota por $G^{\ast}$, aquel construido de la siguiente manera:
+	
+	\begin{enumerate}
+		\item Se elige un punto $v_i$ en cada cara $F_i$ de $G$. Estos puntos son los vértices de $G^{\ast}$.
+		
+		\item Por cada arista $e\in E$ se traza una línea $e^{\ast}$ que atraviesa únicamente la arista $e$, y se unen los vértices $v_i$ pertenecientes a las caras adjuntas a $e$. Estas líneas son las aristas de $G^{\ast}$. A continuación se ilustra este procedimiento de construcción con un ejemplo:
+	\end{enumerate}
+\end{example}
+
+\begin{figure}[H]
+	\captionsetup{justification=centering,margin=0.5cm}
+	\centering
+	\includegraphics{example3.png}
+	\caption{Grafo planar $G$ y	su grafo dual $G^{\prime}=G^{\ast}$.}
+\end{figure}
+
+\begin{definition}[Polinomio cromático]
+Sea $G=(V,E)$ un grafo planar y $P(G,k)$ el número de vértices coloreados
+El polinomio cromático cuenta el número de maneras que puede ser coloreado un grafo usando no más de número dado de colores.
+\end{definition}
+
+\begin{remark}
+El polinomio cromático incluye al menos tanta información sobre la colorabilidad de G como el número cromático. De hecho, $\chi$ es el entero positivo más pequeño que no es una raíz del polinomio cromático
+
+\begin{equation*}
+\chi(G)=\min\{k\colon P(G,k)>0\}.
+\end{equation*}
+\end{remark}
+
+\end{frame}
+
 \subsection{La primera ``demostración'': las cadenas de \citeauthor{kempe}}
 
 \begin{frame}\transblindsvertical
 \frametitle{\insertsubsection}
 
-Kempe se interesa por el problema de los 4 colores tras la pregunta de Cayley en la London Mathematical Society.
+Kempe se interesa por el problema de los cuatro colores tras la pregunta de Cayley en la London Mathematical Society.
 
 \
 
 \visible<2>{
-En junio de 1879 obtiene su solución del teorema de los 4 colores y lo publica en el Amer. Journal of Maths. En 1880, publica unas versiones. simplificadas de su prueba, donde corrige algunas erratas de su prueba original, pero deja intacto el error fatal.
+En junio de 1879 obtiene su solución del teorema de los cuatro colores y lo publica en el Amer. Journal of Maths. En 1880, publica unas versiones. simplificadas de su prueba, donde corrige algunas erratas de su prueba original, pero deja intacto el error fatal.
 }
 
+\end{frame}
+
+\begin{frame}
+\frametitle{El algoritmo de las cadenas de Kempe}
+
+\begin{definition}[Cadena de Kempe]
+Sea $G$ un grafo planar cuyos vértices han sido coloreados apropiadamente y suponga $v\in V(G)$ es coloreado $C_1$. Definimos la \emph{cadena de Kempe} $C_1C_2$ que contiene a $v$ para ser el componente conexa maximal de $G$ que
+\begin{enumerate}%[label=\arabic*]
+	\item Contiene a $v$, y
+	\item Contenga solo vértices que son coloreados con elementos desde $(C_1C_2)$.
+\end{enumerate}
+\end{definition}
 \end{frame}
 
 \subsection{Heawood y el error fatal de \citeauthor{kempe}}
 
-\begin{frame}%[allowframebreaks]
-\frametitle{\insertsubsection}
-
-\begin{definition}[Número cromático] 
-	Sea $G=(V,E)$ un grafo y sea $k$ un número natural. Una aplicación $c\colon V\to \{1,2,\ldots k\}$ se llama \emph{\color{DarkBlue}coloración del grafo} $G$ si $c(x)\neq c(y)$ se cumple para cada rama $\{x,y\}\in E$. \linebreak El \emph{\color{DarkBlue}número cromático} de $G$, denotado por $\chi(G)$, es el \emph{\color{red}mínimo valor} de $k$ para el cual existe una coloración $c\colon V(G)\to\{1,2\ldots,k\}$.
-\end{definition}
-
-\visible<2>{
-\begin{definition}[Grafo Dual]
-	Sea $G=(V,E)$ un grafo planar con un dibujo planar fijo. Denotamos por $\mathcal{F}$ el conjunto de caras de $G$. Definimos un grafo, con posibles lazos y ramas múltiples, como $(\mathcal{F},E,\varepsilon)$, donde $\varepsilon$ se define como $\varepsilon(e)=\{F_i,F_j\}$ siempre que la rama $e$ sea una frontera común de las caras $F_i$ y $F_j$.
-	
-	Este grafo $(\mathcal{F},E,\varepsilon)$ se le llama el dual de $G$ y se denota por $G^{\ast}$.	
-\end{definition}
-}
-\end{frame}
-
 \begin{frame}[allowframebreaks]
 \frametitle{\insertsubsection}
 
-\begin{example}[Grafos Duales]
-Para construir una gráfica dual de un grafo plano $G$ se debe colocar un vértice dentro de cada región de $G$ e incluir la región infinita de $G$. Para cada arista compartida por las $2$ regiones, se debe dibujar una arista que conecte a los vértices dentro de estas regiones y para cada arista que se recorre $2$ veces en el camino cerrado alrededor de las aristas de una región se dibuja un lazo en el vértice de la región. 
+\begin{example}[Grafo de Errera -- Contrajemplo]
+Es un grafo planar de $17$ vértices y $45$ aristas que enreda las cadenas de Kempe en el algoritmo de Kempe y proporciona así un ejemplo de cómo falla la supuesta demostración de Kempe del teorema de cuatro colores.
 \end{example}
 
-\begin{figure}[H]
-\captionsetup{justification=centering,margin=0.5cm}
-\centering
-\begin{minipage}{.5\textwidth}
-	\centering
-	\includegraphics[width=3cm]{example1.png}
-	\caption{Grafo $G$.}
-\end{minipage}%
-\begin{minipage}{0.5\textwidth}
-	\centering
-	\includegraphics[width=3cm]{example2.png}
-	\caption{Grafo $G$ y su dual $G^{\ast}$.}
-\end{minipage}
-\end{figure}
 
-\begin{example}[Grafos duales]
-Sea $G=(V,E)$ un grafo plano, se llama grafo dual de $G$ y se denota por $G^{\ast}$, aquel construido de la siguiente manera:
-
-\begin{enumerate}
-	\item Se elige un punto $v_i$ en cada cara $F_i$ de $G$. Estos puntos son los vértices de $G^{\ast}$.
-	
-	\item Por cada arista $e\in E$ se traza una línea $e^{\ast}$ que atraviesa únicamente la arista $e$, y se unen los vértices $v_i$ pertenecientes a las caras adjuntas a $e$. Estas líneas son las aristas de $G^{\ast}$. A continuación se ilustra este procedimiento de construcción con un ejemplo:
-\end{enumerate}
-\end{example}
-
-\begin{figure}[H]
-\captionsetup{justification=centering,margin=0.5cm}
-\centering
-\includegraphics{example3.png}
-\caption{Grafo planar $G$ y	su grafo dual $G^{\prime}=G^{\ast}$.}
-\end{figure}
-
+\begin{remark}[Polinomio cromático del grafo de Errera]
+A
+\end{remark}
 \end{frame}
 
 \begin{frame}\transblindsvertical
@@ -313,27 +347,29 @@ Solo una de las siguientes afirmaciones es verdadera:
 \subsection{El juego Hex}
 
 \begin{frame}\transblindsvertical
-\frametitle{\insertsubsection}
+\frametitle{\insertsubsection\footnote{Redescubierto en Priceton por John Nash en 1948.}}
 
 \begin{columns}[t]
-	\begin{column}{.3\textwidth}
-		\adjincludegraphics[width=.8\linewidth,valign=t]{diagrama.jpg}
+	\begin{column}{.4\textwidth}
+			\begin{figure}[ht]
+				%\centering
+				\scalebox{.32}{\input{hex.tex}}
+				\caption{Patrón hexagonal.}
+			\end{figure}%\adjincludegraphics[width=.8\linewidth,valign=t]{diagrama.jpg}
 	\end{column}
-	\begin{column}{.7\textwidth}
-		\textbf{``Mientras contemplaba el famoso teorema de topología de cuatro colores. El juego se hizo popular en Dinamarca bajo el nombre de Polígono. El juego fue impreso en blocs de papel; y se vende como un juego de papel y lápiz. Durante meses, los periódicos daneses corrieron una serie de problemas de "Polígono". Albert Einstein mantuvo el juego en un estante en su estudio."}
-		
-		\hfill-- Piet Hein
+	\begin{column}{.38\textwidth}
+		\begin{flushleft}
+		``El juego se basa en la simple propiedad geométrica de una superficie plana que dos líneas dentro de un cuadrado conectan cada una un par de lados opuestos deben cruzarse''.
+		\end{flushleft}
+		\		
+		-- Piet Hein
 	\end{column}
 \end{columns}
 
-\vspace*{10pt}
+\vspace*{5pt}
 
 \begin{itemize}
-	\item Pollard's $p-1$ algorithm (1974)
-	\vspace*{10pt}
-	\item Dixon's Random Squares Algorithm (1981)
-	\vspace*{10pt}
-	\item Quadratic Sieve (QS): Pomerance (1981)
+	\item Reglas: Los jugadores se turnan para ocupar una celda y la otra para formar una cadena que conecta sus dos lados opuestos, y por lo tanto impide que la otra conecte sus lados, gana.
 \end{itemize}
 \end{frame}
 
@@ -387,17 +423,14 @@ Colaboradores:
 Presentación disponible en:
 }
 \begin{center}
-\url{https://github.com/carlosal1015/4colores}
+\href{https://github.com/carlosal1015/4colores}{\includegraphics[width=2.5cm]{Octocat.png}}
 \end{center}
-
 \hfill
-
 \begin{flushright}
 Dudas, sugerencias o preguntas a
 
 \href{mailto:caznaranl@uni.pe}{caznaranl\MVAt uni.pe}
 \end{flushright}
-
 \end{frame}
 
 \begin{frame}[allowframebreaks]\transblindsvertical
