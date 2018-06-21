@@ -1,0 +1,82 @@
+%% Fix so biblatex works instead of natbib
+\makeatletter
+\let\c@author\relax
+\makeatother
+\let\bibhang\relax
+\let\citename\relax
+\let\bibfont\relax
+\let\Citeauthor\relax
+\expandafter\let\csname ver@natbib.sty\endcsname\relax
+
+%% Fix headers and footers
+\makeatletter
+\def\ps@pprintTitle{%
+	\let\@oddhead\@empty
+	\let\@evenhead\@empty
+	\def\@oddfoot{\centerline{\thepage}}%
+	\let\@evenfoot\@oddfoot}
+\makeatother
+
+%% Load some packages and stuff
+%\usepackage[backend=biber,style=numeric, defernumbers=true, sorting=ynt,maxbibnames=4,maxcitenames=4]{biblatex}
+%% Library and stuff
+\usepackage[style=numeric,sortcites=true,sorting=ynt,backend=biber]{biblatex}
+%% biblatex med apa-style. Det vivill ha
+\DeclareLanguageMapping{american}{american-apa} %% Vi vill ha svensk apa
+\bibliography{reference}
+
+\usepackage[T1]{fontenc}
+\usepackage{pifont}
+\usepackage{geometry}
+\usepackage[svgnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{txfonts}
+\usepackage{amsmath}
+%\theoremstyle{definition}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=red,
+	urlcolor=red,
+	citecolor=red
+}
+\usepackage{etoolbox}
+\AtBeginDocument{%
+	%\patchcmd{<cmd>}{<search>}{<replace>}{<success>}{<failure>}
+	%\patchcmd{\ps@pprintTitle}% <cmd>
+	%{Preprint submitted}% <search>
+	%{To be submitted}% <replace>
+	%{}{}% <succes><failure>
+	\patchcmd{\MaketitleBox}{\vspace*{-20pt}\fi}{\fi}{}{}%
+	\patchcmd{\abstract}{Abstract}{Resumen}{}{}
+}
+
+\makeatletter
+\patchcmd{\ps@pprintTitle}{\footnotesize\itshape
+	Preprint submitted to \ifx\@journal\@empty Elsevier
+	\else\@journal\fi\hfill\today}{\relax}{}{}
+\makeatother
+
+\makeatletter
+
+\def\keyword{%
+	\def\sep{\unskip, }%
+	\def\MSC{\@ifnextchar[{\@MSC}{\@MSC[2000]}}
+	\def\@MSC[##1]{\par\leavevmode\hbox {\it ##1~MSC:\space}}%
+	\def\PACS{\par\leavevmode\hbox {\it PACS:\space}}%
+	\def\JEL{\par\leavevmode\hbox {\it JEL:\space}}%
+	\global\setbox\keybox=\vbox\bgroup\hsize=\textwidth
+	\normalsize\normalfont\def\baselinestretch{1}
+	\parskip\z@
+	\noindent\textit{Palabras clave: }  % <--- Edit as necessary
+	\raggedright                         % Keywords are not justified.
+	\ignorespaces}
+\makeatother
+
+%% `Elsevier LaTeX' style
+%\bibliographystyle{elsarticle-num}
+\renewcommand{\contentsname}{Tabla de contenidos}
+%\newcommand{\MVAt}{{\usefont{U}{mvs}{m}{n}\symbol{`@}}}
+\newtheorem{definition}{Definición}
+\newtheorem{example}{Ejemplo}
+\newtheorem{theorem}{Teorema}
