@@ -1,0 +1,148 @@
+% !TeX document-id = {e910d311-1b9f-412a-806f-acb4afe000c4}
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape] | txs:///biber | txs:///pdflatex/[--shell-escape]
+
+\documentclass[3p,times,a4paper,twocolumn,authoryear]{elsarticle} %authoryear
+
+%% Fix so biblatex works instead of natbib
+\makeatletter
+\let\c@author\relax
+\makeatother
+\let\bibhang\relax
+\let\citename\relax
+\let\bibfont\relax
+\let\Citeauthor\relax
+\expandafter\let\csname ver@natbib.sty\endcsname\relax
+
+%% Fix headers and footers
+\makeatletter
+\def\ps@pprintTitle{%
+	\let\@oddhead\@empty
+	\let\@evenhead\@empty
+	\def\@oddfoot{\centerline{\thepage}}%
+	\let\@evenfoot\@oddfoot}
+\makeatother
+
+%% Load some packages and stuff
+%\usepackage[backend=biber,style=numeric, defernumbers=true, sorting=ynt,maxbibnames=4,maxcitenames=4]{biblatex}
+%% Library and stuff
+\usepackage[style=numeric,sortcites=true,sorting=ynt,backend=biber]{biblatex}
+%% biblatex med apa-style. Det vivill ha
+\DeclareLanguageMapping{american}{american-apa} %% Vi vill ha svensk apa
+\bibliography{reference}
+
+\usepackage{pifont}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{txfonts}
+\usepackage{hyperref}
+\usepackage{etoolbox}
+\AtBeginDocument{%
+	% \patchcmd{<cmd>}{<search>}{<replace>}{<success>}{<failure>}
+	\patchcmd{\MaketitleBox}{\vspace*{-20pt}\fi}{\fi}{}{}%
+	\patchcmd{\abstract}{Abstract}{Resumen}{}{}
+}
+
+\makeatletter
+\patchcmd{\ps@pprintTitle}{\footnotesize\itshape
+	Preprint submitted to \ifx\@journal\@empty Elsevier
+	\else\@journal\fi\hfill\today}{\relax}{}{}
+\makeatother
+
+\usepackage{ecrc}
+\volume{06}
+
+\firstpage{10}
+%\usepackage{etoolbox}
+%\makeatletter
+%\patchcmd{\ps@pprintTitle}% <cmd>
+%{Preprint submitted}% <search>
+%{To be submitted}% <replace>
+%{}{}% <succes><failure>
+%\makeatother
+\runauth{Grupo N$^{\circ}6$}%C. Aznarán et al.
+
+\jnltitlelogo{\large Annals of Discrete Mathematics FC-UNI}
+
+\makeatletter
+
+\def\keyword{%
+	\def\sep{\unskip, }%
+	\def\MSC{\@ifnextchar[{\@MSC}{\@MSC[2000]}}
+	\def\@MSC[##1]{\par\leavevmode\hbox {\it ##1~MSC:\space}}%
+	\def\PACS{\par\leavevmode\hbox {\it PACS:\space}}%
+	\def\JEL{\par\leavevmode\hbox {\it JEL:\space}}%
+	\global\setbox\keybox=\vbox\bgroup\hsize=\textwidth
+	\normalsize\normalfont\def\baselinestretch{1}
+	\parskip\z@
+	\noindent\textit{Palabras clave: }  % <--- Edit as necessary
+	\raggedright                         % Keywords are not justified.
+	\ignorespaces}
+\makeatother
+
+%% `Elsevier LaTeX' style
+%\bibliographystyle{elsarticle-num}
+\renewcommand{\contentsname}{Tabla de contenidos}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{El teorema de los cuatro colores\tnoteref{t1}}
+\tnotetext[t1]{This paper are available on \href{https://github.com/carlosal1015/4colores}{GitHub}.}
+%% Group authors per affiliation:
+\author{C. Aznarán Laos\fnref{myfootnote}}
+\address{Radarweg 29, Amsterdam}
+\fntext[myfootnote]{Since 1880.}
+
+%% or include affiliations in footnotes:
+\author[unim]{Elsevier Inc}
+\ead[url]{www.blogdeoromion.pe.hu}
+
+\author[unic]{F. Cruz Ordoñez\corref{mycorrespondingauthor}}
+\cortext[mycorrespondingauthor]{Corresponding author}
+\ead{support@gmail.com}
+
+\address[unim]{Facultad de Ciencias - Escuela profesional de Matemática, \\Universidad Nacional de Ingeniería,	Av. Túpac Amaru 210, Rímac, Lima 25, Peru}
+\address[unic]{Facultad de Ciencias - Escuela profesional de Ciencia de la Computación, \\Universidad Nacional de Ingeniería,	Av. Túpac Amaru 210, Rímac, Lima 25, Peru}
+
+%\author[uni]{Álvaro I. Plasencia\corref{mycorrespondingauthor}}
+%\cortext[mycorrespondingauthor]{Corresponding author}
+%\ead{caznaranl@uni.pe}\fnref{fn1}
+%\ead[url]{www.blogdeoromion.pe.hu}\fnref{fn1}
+%\author[uni]{C. Aznarán\fnref{fn2}}
+%\fntext[fn1]{First author partially supported by the Universidad Nacional de Ingeniería project.}
+%\fntext[fn2]{Second author partially supported by the Undergraduate Mathematics Group P156250.}
+%
+\begin{abstract}
+In this paper, we will review the definitions about the hyperbolic functions, trigonometric functions and deduce their inverse functions in terms of logarithms and exponentials introducing complex numbers.
+Hence, we will show the mathematical interrelation between this types of functions.
+Having already present the established definitions for the hyperbolic functions will look for an analog representation for the trigonometric functions.% We will also give an introduction to inverse hyperbolic functions.
+\\[0.2cm]
+\textcopyright \hspace{.1cm}Science Department National University of Engineering Publishers Inc. All rights reserved. 
+\end{abstract}
+
+\begin{keyword}
+four-color theorem \sep Kempe's chain\sep planar graphs
+\end{keyword}
+
+\end{frontmatter}
+
+\tableofcontents
+
+\section{Introducción}
+
+\section{El ``camino'' hacia la demostración}
+
+\section{Aplicaciones}
+
+\section{Conclusiones}
+
+\section*{Agradecimientos}
+
+The authors want to thank the Universidad Nacional de Ingeniería and the Undergraduate Mathematics Group for their hospitality during the visits while preparing this paper.
+
+The authors would like to thank professor Johny Valverde for many valuable and constructive suggestions, that have helped to improve the paper.
+
+\nocite{*}
+\printbibliography[title={Referencias}]
+\end{document}
