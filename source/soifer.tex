@@ -1,0 +1,12 @@
+\begin{tikzpicture}[scale=2]
+	\SetGraphUnit{2}
+	\GraphInit[vstyle=Classic]
+	\SetVertexNoLabel
+	\foreach \X/\Y [count=\Z] in {5 /0, 2.5/ 2.35, 0/ 0, 3.2/ 3, 1.8/ 1.7, 3.2/ 1.7,
+		1.4/ 0.6, 1.8/ 3, 2.5/ 1.05}
+	{\Vertex[x=\X,y=\Y]{v\Z}}
+	\Edges(v3,v8,v4,v2,v8,v5,v3,v7,v5,v9,v2,v6,v9,v7,v1,v9)
+	\Edges(v1,v6,v4,v1)
+	\Edges(v5,v2)
+	\Edges(v3,v1)
+\end{tikzpicture}

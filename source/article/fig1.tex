@@ -1,0 +1,11 @@
+\begin{tikzpicture}
+	\SetGraphUnit{4}
+	\GraphInit[vstyle=Classic]
+	%\SetVertexNoLabel
+	\Vertex[L={\LARGE$\alpha$}, Lpos=180]{a}
+	\EA[L={\LARGE$\gamma$}](a){b}
+	\NOEA[L={\LARGE$\beta$},Lpos=90](b){c}
+	\SOEA[L={\LARGE$\delta$}, Lpos=-90](b){d}
+	\EA[unit=7, L={\LARGE$\alpha$}](b){e}
+	\Edges(d,a,b,c,e,d,c,c,a,b,d)
+\end{tikzpicture}

@@ -1,0 +1,22 @@
+\begin{tikzpicture}[scale=6]
+	\SetGraphUnit{2}
+	\GraphInit[vstyle=Classic]
+	\SetVertexNoLabel
+	\foreach \X/\Y [count=\Z] in {2.21/ 5.19, 2.19/ 5.4, 2.27/ 5.28, 1.98/ 5.57,  2.42/ 5.54, 2.11/ 5.28, 2.19/ 5.77, 1.61/ 5.07, 2.32/ 5.44, 2.07/ 5.44, 2.85/ 5.07, 2.61/ 5.19, 1.86/ 5.15, 2.19/ 5.53, 2.19/ 6.02}
+	{\Vertex[x=\X,y=\Y]{v\Z}}
+	\Edges(v8,v15,v11,v8,v13,v4,v7,v5,v12,v1,v13)
+	\Edges(v11,v13)
+	\Edges(v11,v1)
+	\Edges(v11,v12)
+	\Edges(v8,v4)
+	\Edges(v4,v15)
+	\Edges(v15,v7,v14,v4,v10,v13,v6,v1,v3)
+	\Edges(v12,v3,v6,v10,v14,v9,v3,v2)
+	\Edges(v2,v6)
+	\Edges(v2,v10)
+	\Edges(v2,v14)
+	\Edges(v2,v9,v12)
+	\Edges(v7,v9)
+	\Edges(v7,v12)
+	\Edges(v15,v5,v11)
+\end{tikzpicture}

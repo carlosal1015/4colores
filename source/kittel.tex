@@ -2,25 +2,27 @@
 	\SetGraphUnit{2}
 	\GraphInit[vstyle=Classic]
 	\SetVertexNoLabel
-	\foreach \X/\Y [count=\Z] in {4/ 13, 4/ 6, -0.2/ 5, 2/ 2.2, -6/ -1, 6/ 2.2, 
-	9.5/ 1.6, 2.7/ 5, 4.8/ 7.8, 4/ 10.4, -1.5/ 1.6, 14/ -1, 4/ 3.6, 
-	5.3/ 5, 3.2/ 7.8, 4/ 0.3, 8.1/ 5}
+	\foreach \X/\Y [count=\Z] in {10.5/ 3, 22/ 0, 10/18, 18/ 2.5, 5/ 3,
+		11.7/ 5.6, 1.8/ 1.5, 14/ 7, 7.9/ 9, 7.5/ 6, 12.8/ 1, 9/ 13,
+		9.5/ 6, 15/ 4, 11/ 13, 6.5/ 10, 7/ 1.8, -1/ 0, 9.5/ 9,
+		13.5/ 10.5, 5.7/ 6.5, 12/ 8.5, 8/ 3.5}
 	{\Vertex[x=\X,y=\Y]{v\Z}}
-	\Edges(v2,v8,v13,v14,v2)
-	\Edges(v5,v12,v16,v5)
-    \Edges(v5,v11,v16,v7,v12)
-	\Edges(v11,v4,v16,v6,v7)
-	\Edges(v4,v8,v15,v10,v9,v14,v6)
-	\Edges(v4,v13,v6,v4)
-	\Edges(v13,v2,v15,v9,v2)
-	\Edges(v3,v10,v17)
-	\Edges(v11,v15,v3)
-	\Edges(v7,v9,v17)
-	\Edges(v5,v3,v11)
-	\Edges(v12,v17,v7)
-	\Edges(v5,v1,v12)
-	\Edges(v3,v1,v17)
-	\Edges(v1,v10)
-	\Edges(v11,v8)
-	\Edges(v7,v14)
+	\Edges(v18,v2,v3,v18)
+	\Edges(v7,v16,v12,v15,v20,v4,v11,v17,v7)
+	\Edges(v18,v7,v21,v16,v9,v12,v19,v9,v10,v21,v5,v7)
+	\Edges(v18,v16,v3,v12,v22,v6,v13,v19,v10,v13,v23,v10,v5,v17,v23,v5)
+	\Edges(v21,v9)
+	\Edges(v13,v6,v14,v4)
+	\Edges(v2,v11,v18)
+	\Edges(v11,v1,v17)
+	\Edges(v1,v23)
+	\Edges(v2,v4,v8,v20,v3)
+	\Edges(v14,v8,v22,v15,v8)
+	\Edges(v14,v22)
+	\Edges(v3,v15)
+	\Edges(v12,v6)
+	\Edges(v19,v6)
+	\Edges(v13,v1,v6,v11,v14)
+	\Edges(v18,v17)
+	\Edges(v20,v2)
 \end{tikzpicture}

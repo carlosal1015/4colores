@@ -65,6 +65,13 @@ teorema de los cuatro colores \sep cadena de Kempe\sep grafos planares\sep color
 \tableofcontents
 
 \section{Introducción}
+Si $G$ es un grafo sin lazos, entonces $G$ es \textbf{$\bm{k}$-coloreable} si podemos asignar uno de $k$ colores a cada vértices de manera que vértices adyacentes tengas diferentes colores. Si $G$ es $k$-coloreable, pero no $(k-1)$- coloreable, diremos que $G$ es \textbf{$\bm{k}$-cromático}, o que el \textbf{número cromático} de $G$ es $k$, y lo denotamos por $\chi(G)=k$. Por ejemplo, la \ref{fig:1.1}
+
+\begin{figure}[H]
+\centering
+\scalebox{0.6}{\input{fig1}}
+\caption{Grafo $G$}\label{fig:1.1}
+\end{figure}
 
 \begin{definition}[Grafo planar]
 Un dibujo de un grafo $G=(V,E)$ es una aplicación que a cada vértice $v$ del grafo $G$ le asigna un punto $b(v)$ del plano, y a cada rama $e=\{v,v^{\prime}\}\in E$, le asigna un arco $\alpha(e)$ del plano con $b(v)$ y $b(v^{\prime})$como puntos finales. Suponemos que la aplicación $b$ es inyectiva (vértices diferentes tienen asignados distintos puntos del plano), y un punto de la forma $b(v)$ no está en ninguno de los arcos $\alpha(e)$ excepto si es un punto final de este arco. Un grafo junto con alguno de sus dibujos se llama grafo topológico.
