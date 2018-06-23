@@ -65,7 +65,9 @@ teorema de los cuatro colores \sep cadena de Kempe\sep grafos planares\sep color
 \tableofcontents
 
 \section{Introducción}
-Si $G$ es un grafo sin lazos, entonces $G$ es \textbf{$\bm{k}$-coloreable} si podemos asignar uno de $k$ colores a cada vértices de manera que vértices adyacentes tengas diferentes colores. Si $G$ es $k$-coloreable, pero no $(k-1)$- coloreable, diremos que $G$ es \textbf{$\bm{k}$-cromático}, o que el \textbf{número cromático} de $G$ es $k$, y lo denotamos por $\chi(G)=k$. Por ejemplo, la \ref{fig:1.1}
+Si $G$ es un grafo sin lazos, entonces $G$ es \textbf{$\bm{k}$-coloreable} si podemos asignar uno de $k$ colores a cada vértices de manera que vértices adyacentes tengas diferentes colores. Si $G$ es $k$-coloreable, pero no $(k-1)$- coloreable, diremos que $G$ es \textbf{$\bm{k}$-cromático}, o que el \textbf{número cromático} de $G$ es $k$, y lo denotamos por $\chi(G)=k$. Por ejemplo, la Figura~\ref{fig:1.1} muestra un grafo para el cual $\chi(G)=4$; los colores son dentados por las letras griegas. Es por lo tanto $k$-coloreable si $k>4$. Deberíamos asumir que todos los grafos aquí son simples, ya que los bordes múltiples son irrelevantes para nuestra discusión. También asumiremos que están conectados.
+
+Es claro que $\chi(K_n)=n$, y así, existen grafos con un número cromático grande y arbitrario. En el otro extremo de la escala, $\chi(G)=1$ si y solo si $G$ es el grafo nulo, y $\chi(G)=2$ si y solo si $G$ es un grafo bipartito no nulo. Note que cualquier árbol es $2$-coloreable, así como cualquier ciclo con un número par de vér
 
 \begin{figure}[H]
 \centering
@@ -99,6 +101,23 @@ Este grafo $\left(\mathcal{F},E,\varepsilon\right)$ se le llama el dual de $G$ y
 Para construir una gráfica dual de un grafo plano $G$ se debe colocar un vértice dentro de cada región de $G$ e incluir la región infinita de $G$. Para cada arista compartida por las $2$ regiones, se debe dibujar una arista que conecte a los vértices dentro de estas regiones y para cada arista que se recorre $2$ veces en el camino cerrado alrededor de las aristas de una región se dibuja un lazo en el vértice de la región. 
 \end{example}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=3cm]{example1}
+\caption{Grafo $G$.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=3cm]{example2}
+	\caption{Grafo $G$.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=3cm]{example3}
+	\caption{Grafo $G$.}
+\end{figure}
 \subsection{El problema de los cuatro colores}
 
 \subsection{Algunas fechas importantes}
