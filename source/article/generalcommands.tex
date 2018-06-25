@@ -23,7 +23,7 @@
 \usepackage[style=numeric,sortcites=true,sorting=ynt,backend=biber]{biblatex}
 %% biblatex med apa-style. Det vivill ha
 \DeclareLanguageMapping{american}{american-apa} %% Vi vill ha svensk apa
-\bibliography{reference}
+\bibliography{../bibliography/reference}
 
 \usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
@@ -31,7 +31,8 @@
 \usepackage{geometry}
 \usepackage[svgnames]{xcolor}
 \usepackage{graphicx}
-%\usepackage{sagetex}
+\usepackage{sagetex}
+\usepackage{minted}
 \usepackage{float}
 \usepackage{tkz-graph}
 \usepackage{txfonts}
@@ -94,6 +95,7 @@
 %\bibliographystyle{elsarticle-num}
 \renewcommand{\spanishcontentsname}{Tabla de contenidos}
 \renewcommand{\spanishfigurename}{Fig.}
+\renewcommand{\listingscaption}{Programa}
 %\newcommand{\MVAt}{{\usefont{U}{mvs}{m}{n}\symbol{`@}}}
 \newtheorem{definition}{Definición}
 \newtheorem{example}{Ejemplo}

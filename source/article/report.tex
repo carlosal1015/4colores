@@ -18,9 +18,9 @@
 
 \begin{abstract}
 
-En este trabajo, estudiamos las propiedades de los grafos duales, los números cromáticos y los polinomios cromáticos de los grafos planares para la prueba del teorema de los cuatro colores. Además, mostraremos la interrelación entre este tipo de grafos. Al haber presentado las definiciones establecidas para los grafos duales, se buscará una representación análoga para los mapas conexos. También se mostrará el \emph{algoritmo de las cadenas de Kempe}, el cual es famoso por ser la primera ``demostración del teorema de cuatro colores''. Asimismo, en la sección \ref{sec:2} se evaluará este algoritmo para los grafos de Errera, Fristsch, los cuales son contrajemplos de su prueba y se enunciará sin demostración que estos son los grafos con menor cantidad de aristas. En la sección \ref{sec:3.} se  \cite{birkhoff}. También, con el uso un (CAS)\footnote{Sistema computaizado algebraico} Sage\footnote{SAGE. A Computer System for Algebra and Geometry Experimentation} se hallará el número cromático y sus polinomios cromáticos respectivamente.
+En este trabajo, estudiamos las propiedades de los grafos duales, los números cromáticos y los polinomios cromáticos de los grafos planares para la prueba del teorema de los cuatro colores. Además, mostraremos la interrelación entre este tipo de grafos. Al haber presentado las definiciones establecidas para los grafos duales, se buscará una representación análoga para los mapas conexos. También se mostrará el \emph{algoritmo de las cadenas de Kempe}, el cual es famoso por ser la primera ``demostración del teorema de cuatro colores''. Asimismo, se evaluará este algoritmo para los grafos de Errera, Kittell, Soifer, Fristsch y Poussin, los cuales son contraejemplos de su prueba que data desde 1921. Se mencionará la idea clave \citeauthor{birkhoff} publicado en \cite{birkhoff}. También, con el uso un CAS (Sistema algebraico computacional) Sage en el cual se hallará el número cromático y sus polinomios cromáticos respectivamente. Finalmente se mostrarán algunas aplicaciones con la resolución del Sudoku y un programa llamado \texttt{TEOCOLOR}.
 \\[1mm]
-\textcopyright \hspace{.1cm}Science Department National University of Engineering Publishers Inc. All rights reserved.
+\textcopyright\ Science Department National University of Engineering Publishers Inc. All rights reserved.
 
 \end{abstract}
 
@@ -60,33 +60,27 @@ teorema de los cuatro colores \sep cadena de Kempe\sep grafos planares\sep color
 
 \section{Introducción}\label{sec:1}
 
-\subsection{¿Qué es una conjetura?}
-Una conjetura es una afirmación que se toma por verídica, pero que no ha sido probada o refutada hasta la fecha.\\
-Cuando una conjetura es demostrada ésta recién toma el carácter de Teorema.
+En la sección~\ref{sec:1}, recordaremos los eventos más importantes en la historia del teorema de los cuatro colores. En la sección~\ref{sec:2} damos las definiciones de los grafos planares y los grafos duales. La conexión entre los grafos planares y los mapas conexas viene dada por la \emph{Fórmula de Euler}. La coloración, el número cromático y el polinomio cromático se definen en la sección~\ref{sec:2}. Con estos preparativos, en la sección~\ref{sec:3} demostramos que el número cromático es el menor índice de un número cromático y presentaremos el algoritmo de las cadenas de Kempe. Asimismo, en la sección~\ref{sec:3} se mostrará los contraejemplos de su prueba. Véase~\cite{errera} para más detalles. Posteriormente revisamos las definiciones sobre el método de descarga y encontraremos la noción dada por \citeauthor{birkhoff} sobre configuraciones reducibles publicado en \cite{birkhoff}. En la subsección~\ref{sec:3.3} utilizaremos el Sistema algebraico computarizado de código abierto Sage\TeX{} para ilustrar algunos ejemplos visto en la sección \ref{sec:2} tales como coloración de grafos, número cromático y polinomio cromático. Finalmente, en la Sección \ref{sec:4}, damos algunas aplicaciones para el juego del sudoku y el programa \texttt{TEOCOLOR}.
 
-\subsection{Teorema de  los 4 colores}
-El teorema de los 4 colores fue enunciado por primera vez como una conjetura en el año de 1852 por el botánico y abogado Francis Guthrie después de haber coloreado un mapa complejo de las calles de Inglaterra con tan solo 4 colores.\\
+%El propósito de este reporte es mostrar las técnicas matemáticas o \emph{algoritmos} utilizados en las demostraciones. Asimismo se mostrará algunos cálculos numéricos usando el CAS Sage y se mostrará ejemplos con las definiciones empleadas. Se invita a los matemáticos a que revisen la bibliografía citada.
 
-\noindent El teorema tiene ya más de 100 años entre nosotros, pero tuvieron que llegar Kenneth Appel y Wolfgang Haken con la demostración definitiva en 1976, y gracias a la capacidad de procesamiento de los ordenadores, lograron comprobar una colección de apróximadamente 1900 mapas básicos que ellos mismos habian diseñado y que constataron así la validez del Teorema, esto fue algo polémico ya que nunca se había usaado los ordenadores para hacer una demostración matemática formal.
+\subsection{¿Qué es una conjetura?}\label{sec:1.1}
+Una conjetura es una afirmación que se toma por verídica, pero que no ha sido probada o refutada hasta la fecha. Cuando una conjetura es demostrada ésta recién toma el carácter de Teorema.
 
+\subsection{Teorema de  los 4 colores}\label{sec:1.2}
 
-\subsection{¿Qué dice el Teorema?}
-El teorema nos dice que cualquier mapa conexo , con cualquier número de regiones y con cualquier forma puede ser pintado con solo 4 colores de tal forma que dos regiones vecinas,contiguas o adyacentes no presenten el mismo color.\\
-Un mapa conexo se puede ver como un grafo planar en el cual sus ramas serán las porciones de frontera
+El teorema de los 4 colores fue enunciado por primera vez como una conjetura en el año de 1852 por el botánico y abogado Francis Guthrie después de haber coloreado un mapa complejo de las calles de Inglaterra con tan solo 4 colores.
 
-estudiamos las propiedades del grafos duales, grafos planares, grafos duales, el número cromático y polinomio cromático. Además, nosotros mostraremos la interrelación entre este tipo de grafos. Al haber presentado las definiciones establecidas para los grafos duales, se buscará una representación análoga para los mapas conexos. También se mostrará el \emph{algoritmo de las cadenas de Kempe}, el cual es famoso por ser la primera ``demostración del teorema de cuatro colores''. Asimismo, en la sección \ref{sec:2} se mostrará los contrajemplos de su prueba.
+\noindent El teorema tiene ya más de 100 años entre nosotros, pero tuvieron que llegar \citeauthor{appel} con la demostración definitiva en 1976, y gracias a la capacidad de procesamiento de los ordenadores, lograron comprobar una colección de aproximadamente 1900 mapas básicos que ellos mismos habían diseñado y que constataron así la validez del Teorema, esto fue algo polémico ya que nunca se había usado los ordenadores para hacer una demostración matemática formal.
 
-En la Sección \ref{sec:1}, damos las definiciones de los grafos planares,  y sus fórmulas. La conexión entre los grafos planares y los mapas conexas viene dada por la \emph{Fórmula de Euler}. La coloración, el número cromático y el polinomio cromático se definen en la Sección \ref{sec:2}. Con estos preparativos, en la Sección \ref{sec:2} demostramos que el número cromático es el menor índice de un número cromático y presentaremos el algoritmo de las cadenas de Kempe. En la Sección \ref{sec:3}, revisamos las definiciones sobre el método de descarga y encontraremos la noción dada por \citeauthor{birkhoff} sobre configuraciones reducibles publicado en \cite{birkhoff}. En la sección \ref{sec:3} utilizaremos el Sistema algebraico computarizado de código abierto Sage\TeX{} para ilustrar algunos ejemplos visto en la sección \ref{sec:2} así como las nociones de polinomio cromático.
+\subsection{¿Qué dice el Teorema?}\label{sec:1.3}
+El teorema nos dice que cualquier mapa conexo , con cualquier número de regiones y con cualquier forma puede ser pintado con solo 4 colores de tal forma que dos regiones vecinas,contiguas o adyacentes no presenten el mismo color. Un mapa conexo se puede ver como un grafo planar en el cual sus ramas serán las porciones de frontera
 
-Finalmente, en la Sección \ref{sec:4}, damos algunas aplicaciones para el juego del sudoku.
+\subsection{El problema de los cuatro colores}\label{sec:1.4}
 
-El propoósito de este reporte es mostrar las técnicas matemáticas o \emph{algoritmos} utilizados en las demostraciones. Asimismo se mostrará algunos cálculos numéricos usando el CAS Sage y se mostrará ejemplos con las definiciones empleadas. Se invita a los matemáticos a que revisen la bibliografía citada.
+En 1976, \citeauthor{appel} lograron un gran avance al establecer cuidadosamente el \emph{Teorema de los cuatro colores}. Su prueba se basa en estudiar una gran cantidad de casos para los cuales se requiere una búsqueda asistida por computadora por horas. En 1997, el fue reprobado con menos necesidad de verificación por computadora por \citeauthor{Robin}. Sin embargo, \citeauthor{kempe} en 1879 diseñó un método que se conoce como las \emph{cadenas de Kempe} para su prueba errada del teorema, enunciaremos las definiciones y mostraremos ejemplos, en particular, los grafos de Errera, Kittell, 
 
-\subsection{El problema de los cuatro colores}\label{sec:1.1}
-
-En 1976, \citeauthor{appel} lograron un gran avance al establecer cuidadosamente el \emph{Teorema de los cuatro colores}. Su prueba se basa en estudiar una gran cantidad de casos para los cuales se requiere una búsqueda asistida por computadora por horas. En 1997, el fue reprobado con menos necesidad de verificación por computadora por \citeauthor{Robin}. Sin embargo, \citeauthor{kempe} en 1879 diseñó un método que se conoce como las \emph{cadenas de Kempe} para su prueba errada del teorema, enunciaremos las definiciones y mostraremos ejemplos, en particular, los grafos de Errera, Kittel, 
-
-\subsection{Algunas fechas importantes}\label{sec:1.2}
+\subsection{Algunas fechas importantes}\label{sec:1.5}
 
 A continuación, se listan algunos de los eventos más importantes desde su creación hasta el desenlace a fines del siglo XX.
 
@@ -106,9 +100,9 @@ A continuación, se listan algunos de los eventos más importantes desde su crea
 	
 	\item[{\color{DarkBlue}1969}] Avances de Heinrich Heesch en reducibilidad y obtención de conjuntos inevitables de configuraciones.
 	
-	\item[{\color{DarkBlue}1976}] Ken Appel y Wolfgang Haken prueban con ayuda de un ordenador que sus 1.482 configuraciones son reducibles (50 días de cálculo).
+	\item[{\color{DarkBlue}1976}] \citeauthor{appel} prueban con ayuda de un ordenador que sus 1.482 configuraciones son reducibles (50 días de cálculo).
 	
-	\item[{\color{DarkBlue}1996}] N. Robertson, D.P. Sanders, P. Seymour y R. Thomas mejoran la demostración con ayuda de ordenador (solo 633 configuraciones) y automatizan la prueba de la inevitabilidad.
+	\item[{\color{DarkBlue}1996}] \citeauthor{robertson} mejoran la demostración con ayuda de ordenador (solo 633 configuraciones) y automatizan la prueba de la inevitabilidad.
 	
 	\item[{\color{DarkBlue}2000}] Ashay Dharwadker da otra prueba del teorema de los 4 colores, no basada en ideas previas, utilizando teoría de grupos, teoría de sistemas de Steiner y correspondencias de Hall.
 	
@@ -116,9 +110,9 @@ A continuación, se listan algunos de los eventos más importantes desde su crea
 
 \end{enumerate}
 
-\section{Definiciones previas}
+\section{Definiciones previas}\label{sec:2}
 
-\subsection{Mapa conexo}
+\subsection{Mapa conexo}\label{sec:2.1}
 Un mapa conexo se puede ver como un grafo planar en el cual las porciones de frontra son las ramas del grafo.
 
 \begin{figure}[H]
@@ -200,36 +194,35 @@ El polinomio cromático cuenta el número de maneras que puede ser coloreado un 
 
 \end{definition}
 
+\section{El ``camino'' hacia la demostración}\label{sec:3}
+
+\subsection{La formulación de la conjetura}\label{sec:3.1}
+
+\subsection{La primera ``demostración'': las cadenas de Kempe}\label{sec:3.2}
+
 \begin{definition}[Cadenas de Kempe]
-
-Suponga que un mapa $M$ es coloreado por los colores $a, b, c$ y $d$, seleccione un par de ellos, como $a$ y $b$. Considere cualquier región coloreada en uno de esos pares de colores juntos con todas las regiones de esos colores, adyacente o conexa por un conjunto de regiones en los dos colores. Tal conjunto de regiones será llamado una \emph{cadena} $a,b$. Obviamente, la misma cadena $a,b$ es definida por cualquier región en la cadena.
-
-Una propiedad fundamental de la cadena es que si los dos colores sobre las regiones de una cadena simple, o de cualquier conjunto de esas cadenas de los mismos colores, todas intercambiadas, una nueva coloración de mapas resulta
-
+	
+	Suponga que un mapa $M$ es coloreado por los colores $a, b, c$ y $d$, seleccione un par de ellos, como $a$ y $b$. Considere cualquier región coloreada en uno de esos pares de colores juntos con todas las regiones de esos colores, adyacente o conexa por un conjunto de regiones en los dos colores. Tal conjunto de regiones será llamado una \emph{cadena} $a,b$. Obviamente, la misma cadena $a,b$ es definida por cualquier región en la cadena.
+	
+	Una propiedad fundamental de la cadena es que si los dos colores sobre las regiones de una cadena simple, o de cualquier conjunto de esas cadenas de los mismos colores, todas intercambiadas, una nueva coloración de mapas resulta
+	
 \end{definition}
 
 \begin{definition}[Cadena de Kempe]
 
 Sea $G$ un grafo planar cuyos vértices han sido coloreados apropiadamente y suponga $v\in V(G)$ es coloreado $C_1$. Definimos la \emph{cadena de Kempe} $C_1C_2$ que contiene a $v$ para ser el componente conexa maximal de $G$ que
-
+	
 \begin{enumerate}%[label=\arabic*]
 
 	\item Contiene a $v$, y
-	
+
 	\item Contenga solo vértices que son coloreados con elementos desde $(C_1C_2)$.
 
 \end{enumerate}
-
+	
 \end{definition}
 
-\section{El ``camino'' hacia la demostración}\label{sec:2}
-
-\subsection{La formulación de la conjetura}\label{sec:2.1}
-
-\subsection{La primera ``demostración'': las cadenas de Kempe}\label{sec:2.2}
-
-
-\subsection{Heawood y el error fatal de \citeauthor{kempe}}\label{sec:2.3}
+\subsection{Heawood y el error fatal de \citeauthor{kempe}}\label{sec:3.3}
 
 \begin{figure}[H]
 	\centering
@@ -239,8 +232,8 @@ Sea $G$ un grafo planar cuyos vértices han sido coloreados apropiadamente y sup
 
 \begin{figure}[H]
 	\centering
-	\scalebox{.25}{\input{../images/kittel.tex}}
-	\caption{Grafo de Kittel.}
+	\scalebox{.25}{\input{../images/kittell.tex}}
+	\caption{Grafo de Kittell.}
 \end{figure}
 
 \begin{figure}[H]
@@ -261,24 +254,26 @@ Sea $G$ un grafo planar cuyos vértices han sido coloreados apropiadamente y sup
 	\caption{Grafo de Poussin.}
 \end{figure}
 
-\subsection{Idea clave: la reducibilidad de mapas de \citeauthor{birkhoff}}\label{sec:2.4}
+\begin{listing}[H]
+	\inputminted{python}{../code/errera.sage}
+	\caption{Programa \texttt{errera.sage}}
+\end{listing}
 
-\subsection{El método de descarga de \citeauthor{appel}}\label{sec:2.5}
 
-\section{Aplicaciones}\label{sec:3.}
+\subsection{Idea clave: la reducibilidad de mapas de \citeauthor{birkhoff}}\label{sec:3.4}
 
-\subsection{El juego Hex}\label{sec:3.1}
+\subsection{El método de descarga de \citeauthor{appel}}\label{sec:3.5}
 
-\subsection{Resolución del rompecabezas sudoku}\label{sec:3.2}
+\section{Aplicaciones}\label{sec4}
 
-\subsection{Programa \texttt{TEOCOLOR}}
+\subsection{El juego Hex}\label{sec:4.1}
+
+\subsection{Resolución del rompecabezas sudoku}\label{sec:4.2}
+
+\subsection{Programa \texttt{TEOCOLOR}}\label{sec:4.3}
 
 \texttt{TEOCOLOR} es un sitio web que permite, a través de un juego la implementación de un método de aprendizaje,instrumentos y estrategias que dinamicen la teoría y la práctica dentro de las aulas en el campo de las matemáticas, este programa está basado en la coloración de mapas con un máximo de
 cuatro colores, donde implícitamente se utiliza el teorema de cuatro colores, la teoría de grafos; además facilitan un aprendizaje significativo en personas sordas.
-
-\section{Conclusiones}\label{sec:4}
-
-\subsection{Importancia del teorema para los matemáticos}\label{sec:4.1}
 
 \section*{Agradecimientos}
 

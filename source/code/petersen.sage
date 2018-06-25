@@ -1,7 +1,5 @@
+# Ejemplo: Grafo de Petersen
 P = graphs.PetersenGraph()
 P.show()
 P.chromatic_number()
-P.chromatic_number()
-Q=graphs.ErreraGraph()
-Q.chromatic_polynomial()
 P.chromatic_polynomial()
