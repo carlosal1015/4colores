@@ -3,12 +3,14 @@
 \PassOptionsToPackage{svgnames}{xcolor}
 \documentclass[spanish, utf8,handout]{beamer} % 
 \usepackage[T1]{fontenc}
+\usepackage{mathpazo}
 \usepackage[spanish]{babel}
 \usepackage{amsmath,mathrsfs,amsfonts,amsthm}
 \usepackage{tikz}
 \usepackage{tkz-graph}
 \usepackage{adjustbox}
 \usepackage{caption}
+
 %\usepackage{sagetex}
 %\usepackage{pythontex}
 %\usepackage[figurename=Figura]{caption}
@@ -28,10 +30,12 @@
 %\setbeamercovered{transparent}
 \setbeamercovered{dynamic}
 
+\setbeamertemplate{background canvas}{\includegraphics[height=\paperheight]{background}}
 \setbeamertemplate{footline}[frame number]{}
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{footline}{}
 \setbeamertemplate{headline}{}
+\setbeamertemplate{blocks}[rounded][shadow=false] 
 
 \title[Teorema de los cuatro colores]{\Huge\sffamily El teorema de los cuatro colores}
 \subtitle{Introducción a la matemática discreta CM -- 254}
@@ -219,12 +223,12 @@ Para construir una gráfica dual de un grafo plano $G$ se debe colocar un vérti
 	\centering
 	\begin{minipage}{.5\textwidth}
 		\centering
-		\includegraphics[width=3cm]{example1}
+		\includegraphics[width=4cm]{example1}
 		\caption{Grafo $G$.}
 	\end{minipage}%
 	\begin{minipage}{0.5\textwidth}
 		\centering
-		\includegraphics[width=3cm]{example2}
+		\includegraphics[width=4cm]{example2}
 		\caption{Grafo $G$ y su dual $G^{\ast}$.}
 	\end{minipage}
 \end{figure}
@@ -247,12 +251,11 @@ Para construir una gráfica dual de un grafo plano $G$ se debe colocar un vérti
 \end{figure}
 
 \begin{definition}[Polinomio cromático]
-Sea $G=(V,E)$ un grafo planar y $P(G,k)$ el número de vértices coloreados.
-El polinomio cromático cuenta el número de maneras que puede ser coloreado un grafo usando no más de número dado de colores.
+Sea $G=(V,E)$ un grafo planar y $P(G,k)$ el número de vértices coloreados. El polinomio cromático cuenta el número de maneras que puede ser coloreado un grafo usando no más de número dado de colores.
 \end{definition}
 
 \begin{remark}
-El polinomio cromático incluye al menos tanta información sobre la colorabilidad de G como el número cromático. De hecho, $\chi$ es el entero positivo más pequeño que no es una raíz del polinomio cromático
+El polinomio cromático incluye al menos tanta información sobre la colorabilidad de $G$ como el número cromático. De hecho, $\chi$ es el entero positivo más pequeño que no es una raíz del polinomio cromático
 
 \begin{equation*}
 \chi(G)=\min\{k\colon P(G,k)>0\}.
@@ -299,32 +302,49 @@ Es un grafo planar de $17$ vértices y $45$ aristas que enreda las cadenas de Ke
 
 \begin{figure}[H]
 	\centering
-	\scalebox{.3}{\input{errera.tex}}
-	\caption{Grafo de Errera, publicado en.}
+	\scalebox{.3}{\input{./images/errera.tex}}
+	\caption{Grafo de Errera.}
 \end{figure}
+
+\begin{example}[Grafo de Kittel -- Contrajemplo]
+Es un grafo planar de $23$ vértices y $63$ aristas que enreda las cadenas de Kempe en el algoritmo de Kempe y proporciona así un ejemplo de cómo falla la supuesta demostración de Kempe del teorema de cuatro colores.
+\end{example}
 
 \begin{figure}[H]
 	\centering
-	\scalebox{.3}{\input{kittel.tex}}
-	\caption{Grafo de Kittel, publicado en.}
+	\scalebox{.25}{\input{./images/kittel.tex}}
+	\caption{Grafo de Kittel.}
 \end{figure}
+
+\begin{example}[Grafo de Soifer -- Contrajemplo]
+Es un grafo planar de $9$ vértices y $20$ aristas que enreda las cadenas de Kempe en el algoritmo de Kempe y proporciona así un ejemplo de cómo falla la supuesta demostración de Kempe del teorema de cuatro colores.
+\end{example}
 
 \begin{figure}[H]
 	\centering
-	\scalebox{0.6}{\input{soifer.tex}}
-	\caption{Grafo de Soifer, publicado en.}
+	\scalebox{0.6}{\input{./images/soifer.tex}}
+	\caption{Grafo de Soifer.}
 \end{figure}
+
+\begin{example}[Grafo de Fritsch -- Contrajemplo]
+Es un grafo planar de $9$ vértices y $21$ aristas que enreda las cadenas de Kempe en el algoritmo de Kempe y proporciona así un ejemplo de cómo falla la supuesta demostración de Kempe del teorema de cuatro colores.
+\end{example}
 
 \begin{figure}[H]
 	\centering
-	\scalebox{0.6}{\input{fritsch.tex}}
-	\caption{Grafo de Fritsch, publicado en.}
+	\scalebox{0.45}{\input{./images/fritsch.tex}}
+	\caption{Grafo de Fritsch.}
 \end{figure}
+
+
+\begin{example}[Grafo de Poussin -- Contrajemplo]
+Es un grafo planar de $15$ vértices y $39$ aristas que enreda las cadenas de Kempe en el algoritmo de Kempe y proporciona así un ejemplo de cómo falla la supuesta demostración de Kempe del teorema de cuatro colores.
+\end{example}
 
 \begin{figure}[H]
 	\centering
-	\scalebox{0.6}{\input{poussin.tex}}
-	\caption{Grafo de Poussin, publicado en.}
+	\scalebox{0.6}{\input{./images/poussin.tex}}
+	\caption{Grafo de Poussin.}
 \end{figure}
 
 \begin{remark}[Polinomio cromático del grafo de Errera]
@@ -351,22 +371,28 @@ A
 
 \end{frame}
 
-\subsection{Idea clave: la reducibilidad de mapas de \citeauthor{birkhoff}}
+\subsection{Idea clave: La reducibilidad de mapas de \citeauthor{birkhoff}}
 
 \begin{frame}
 \frametitle{\insertsubsection}
 
-\begin{theorem}[\citeauthor{birkhoff}]\normalfont
+\begin{minipage}[c]{4.7cm}
+\begin{theorem}[\citeauthor{birkhoff}]\textnormal
 Solo una de las siguientes afirmaciones es verdadera:
-
-\begin{enumerate}
-	\item La conjetura de los cuatro colores puede ser falsa.
-	
-	\item Es posible hallar una colección finita de configuraciones reducibles \linebreak tal que cualquier mapa planar debe contener uno de ellos \linebreak (lo que probaría la conjetura de cuatro colores).
-	
-	\item La conjetura de cuatro colores puede ser cierta, pero pueden \linebreak requerirse métodos más complicados para una prueba.
-\end{enumerate}
+\begin{itemize}%[wide=\parindent]%leftmargin=0.5em],
+	\item \small{La conjetura de los cuatro colores puede ser falsa.}
+	\item \small{Es posible hallar una colección finita de configuraciones reducibles \linebreak tal que cualquier mapa planar debe contener uno \linebreak de ellos.}
+	\item \small{La conjetura de cuatro colores puede ser cierta, pero pueden \linebreak requerirse métodos más complicados para una prueba.}
+\end{itemize}
 \end{theorem}
+\end{minipage}
+\begin{minipage}[c]{6.8cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=6.6cm]{birkhoff}
+\caption{Reducibilidad de mapas.}
+\end{figure}
+\end{minipage}
 \end{frame}
 
 \subsection{El método de descarga de \citeauthor{appel}}
@@ -384,7 +410,7 @@ Solo una de las siguientes afirmaciones es verdadera:
 	\begin{column}{.4\textwidth}
 			\begin{figure}[ht]
 				%\centering
-				\scalebox{.32}{\input{hex.tex}}
+				\scalebox{.32}{\input{./images/hex.tex}}
 				\caption{Patrón hexagonal.}
 			\end{figure}%\adjincludegraphics[width=.8\linewidth,valign=t]{diagrama.jpg}
 	\end{column}
@@ -427,9 +453,9 @@ Solo una de las siguientes afirmaciones es verdadera:
 %\end{itemize}
 %\end{frame}
 
-\section{Conclusiones}
-
-\subsection{Importancia del teorema para los matemáticos}
+%\section{Conclusiones}
+%
+%\subsection{Importancia del teorema para los matemáticos}
 
 \begin{frame}
 \frametitle{Agradecimientos}

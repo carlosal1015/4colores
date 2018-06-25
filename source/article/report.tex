@@ -8,7 +8,7 @@
 
 \volume{06}
 
-\firstpage{10}
+\firstpage{1}
 
 \runauth{Grupo N$^{\circ}6$}%C. Aznarán et al.
 
@@ -16,55 +16,117 @@
 
 \begin{document}
 
-\begin{frontmatter}
-
-\title{El teorema de los cuatro colores\tnoteref{t1}}
-\tnotetext[t1]{This report is available on \href{https://github.com/carlosal1015/4colores}{GitHub}.}
-
-%% Group authors per affiliation:
-\author[1,3]{C.~Aznarán Laos}
-\ead{caznaranl@uni.pe}
-
-\author[1,3]{F.~Cruz Ordoñez\corref{mycorrespondingauthor}}
-\ead{fransscruz18@gmail.com}
-
-\author[2,3]{J.~Navío Torres\corref{mycorrespondingauthor}}
-\ead{jnavio@uni.pe}
-%\ead[url]{www.blogdeoromion.pe.hu}
-
-%% or include affiliations in footnotes:
-\author[1,3]{G.~Quiroz Gómez\corref{mycorrespondingauthor}}
-\ead{ge\_qg\_25@hotmail.com}
-
-\address[1]{Facultad de Ciencias - Escuela profesional de Ciencia de la Computación}
-\address[2]{Facultad de Ciencias - Escuela profesional de Matemática}
-\address[3]{Universidad Nacional de Ingeniería,	Av. Túpac Amaru 210, Rímac, Lima 25, Perú}
-%\author[uni]{Álvaro I. Plasencia\corref{mycorrespondingauthor}}
-%\cortext[mycorrespondingauthor]{Corresponding author}
-%\ead{caznaranl@uni.pe}\fnref{fn1}
-%\ead[url]{www.blogdeoromion.pe.hu}\fnref{fn1}
-%\author[uni]{C. Aznarán\fnref{fn2}}
-%\fntext[fn1]{First author partially supported by the Universidad Nacional de Ingeniería project.}
-%\fntext[fn2]{Second author partially supported by the Undergraduate Mathematics Group P156250.}
-%
 \begin{abstract}
-En este reporte, nosotros repasaremos las definiciones acerca de los grafos planares, grafos duales, número cromático y polinomio cromático. Además, nosotros mostraremos la interrelación entre este tipo de grafos. Al haber presentado las definiciones establecidas para los grafos duales, se buscará una representación analógica para los mapas conexos. También se dará una introducción a las cadenas de Kempe y se dará una prueba completa del contraejemplo del grafo de Errera el cual está presentado en \cite{birkhoff}.
-\\[0.2cm]
-%In this paper, we will review the definitions about the hyperbolic functions, trigonometric functions and deduce their inverse functions in terms of logarithms and exponentials introducing complex numbers.
-%Hence, we will show the mathematical interrelation between this types of functions.
-%Having already present the established definitions for the hyperbolic functions will look for an analog representation for the trigonometric functions.% We will also give an introduction to inverse hyperbolic functions.
-\textcopyright \hspace{.1cm}Science Department National University of Engineering Publishers Inc. All rights reserved. 
+
+En este trabajo, estudiamos las propiedades de los grafos duales, los números cromáticos y los polinomios cromáticos de los grafos planares para la prueba del teorema de los cuatro colores. Además, mostraremos la interrelación entre este tipo de grafos. Al haber presentado las definiciones establecidas para los grafos duales, se buscará una representación análoga para los mapas conexos. También se mostrará el \emph{algoritmo de las cadenas de Kempe}, el cual es famoso por ser la primera ``demostración del teorema de cuatro colores''. Asimismo, en la sección \ref{sec:2} se evaluará este algoritmo para los grafos de Errera, Fristsch, los cuales son contrajemplos de su prueba y se enunciará sin demostración que estos son los grafos con menor cantidad de aristas. En la sección \ref{sec:3.} se  \cite{birkhoff}. También, con el uso un (CAS)\footnote{Sistema computaizado algebraico} Sage\footnote{SAGE. A Computer System for Algebra and Geometry Experimentation} se hallará el número cromático y sus polinomios cromáticos respectivamente.
+\\[1mm]
+\textcopyright \hspace{.1cm}Science Department National University of Engineering Publishers Inc. All rights reserved.
+
 \end{abstract}
 
 \begin{keyword}
 teorema de los cuatro colores \sep cadena de Kempe\sep grafos planares\sep coloración de mapas
 \end{keyword}
 
+\begin{frontmatter}
+
+\title{El teorema de los cuatro colores\tnoteref{t1,t2}}
+\tnotetext[t1]{Este documento es un esfuerzo colaborativo.}
+\tnotetext[t2]{Este informe está disponible en \href{https://github.com/carlosal1015/4colores}{GitHub}.}
+
+%% Group authors per affiliation:
+\author[1,3]{C.~Aznarán Laos\corref{correspondingauthor}}
+\ead{caznaranl@uni.pe}
+
+\ead[url]{www.blogdeoromion.pe.hu}
+
+\author[1,3]{F.~Cruz Ordoñez\corref{mycorrespondingauthor}}
+\ead{fransscruz18@gmail.com}
+
+\author[2,3]{J.~Navío Torres\corref{mycorrespondingauthor}}
+\ead{jnavio@uni.pe}
+
+%% or include affiliations in footnotes:
+\author[1,3]{G.~Quiroz Gómez\corref{mycorrespondingauthor}}
+\ead{ge\_qg\_25@hotmail.com}
+
+\address[1]{Facultad de Ciencias - Escuela Profesional de Ciencia de la Computación}
+\address[2]{Facultad de Ciencias - Escuela Profesional de Matemática}
+\address[3]{Universidad Nacional de Ingeniería,	Av. Túpac Amaru 210, Rímac, Lima 25, Perú}
+
 \end{frontmatter}
 
 \tableofcontents
 
-\section{Introducción}
+\section{Introducción}\label{sec:1}
+
+\subsection{¿Qué es una conjetura?}
+Una conjetura es una afirmación que se toma por verídica, pero que no ha sido probada o refutada hasta la fecha.\\
+Cuando una conjetura es demostrada ésta recién toma el carácter de Teorema.
+
+\subsection{Teorema de  los 4 colores}
+El teorema de los 4 colores fue enunciado por primera vez como una conjetura en el año de 1852 por el botánico y abogado Francis Guthrie después de haber coloreado un mapa complejo de las calles de Inglaterra con tan solo 4 colores.\\
+
+\noindent El teorema tiene ya más de 100 años entre nosotros, pero tuvieron que llegar Kenneth Appel y Wolfgang Haken con la demostración definitiva en 1976, y gracias a la capacidad de procesamiento de los ordenadores, lograron comprobar una colección de apróximadamente 1900 mapas básicos que ellos mismos habian diseñado y que constataron así la validez del Teorema, esto fue algo polémico ya que nunca se había usaado los ordenadores para hacer una demostración matemática formal.
+
+
+\subsection{¿Qué dice el Teorema?}
+El teorema nos dice que cualquier mapa conexo , con cualquier número de regiones y con cualquier forma puede ser pintado con solo 4 colores de tal forma que dos regiones vecinas,contiguas o adyacentes no presenten el mismo color.\\
+Un mapa conexo se puede ver como un grafo planar en el cual sus ramas serán las porciones de frontera
+
+estudiamos las propiedades del grafos duales, grafos planares, grafos duales, el número cromático y polinomio cromático. Además, nosotros mostraremos la interrelación entre este tipo de grafos. Al haber presentado las definiciones establecidas para los grafos duales, se buscará una representación análoga para los mapas conexos. También se mostrará el \emph{algoritmo de las cadenas de Kempe}, el cual es famoso por ser la primera ``demostración del teorema de cuatro colores''. Asimismo, en la sección \ref{sec:2} se mostrará los contrajemplos de su prueba.
+
+En la Sección \ref{sec:1}, damos las definiciones de los grafos planares,  y sus fórmulas. La conexión entre los grafos planares y los mapas conexas viene dada por la \emph{Fórmula de Euler}. La coloración, el número cromático y el polinomio cromático se definen en la Sección \ref{sec:2}. Con estos preparativos, en la Sección \ref{sec:2} demostramos que el número cromático es el menor índice de un número cromático y presentaremos el algoritmo de las cadenas de Kempe. En la Sección \ref{sec:3}, revisamos las definiciones sobre el método de descarga y encontraremos la noción dada por \citeauthor{birkhoff} sobre configuraciones reducibles publicado en \cite{birkhoff}. En la sección \ref{sec:3} utilizaremos el Sistema algebraico computarizado de código abierto Sage\TeX{} para ilustrar algunos ejemplos visto en la sección \ref{sec:2} así como las nociones de polinomio cromático.
+
+Finalmente, en la Sección \ref{sec:4}, damos algunas aplicaciones para el juego del sudoku.
+
+El propoósito de este reporte es mostrar las técnicas matemáticas o \emph{algoritmos} utilizados en las demostraciones. Asimismo se mostrará algunos cálculos numéricos usando el CAS Sage y se mostrará ejemplos con las definiciones empleadas. Se invita a los matemáticos a que revisen la bibliografía citada.
+
+\subsection{El problema de los cuatro colores}\label{sec:1.1}
+
+En 1976, \citeauthor{appel} lograron un gran avance al establecer cuidadosamente el \emph{Teorema de los cuatro colores}. Su prueba se basa en estudiar una gran cantidad de casos para los cuales se requiere una búsqueda asistida por computadora por horas. En 1997, el fue reprobado con menos necesidad de verificación por computadora por \citeauthor{Robin}. Sin embargo, \citeauthor{kempe} en 1879 diseñó un método que se conoce como las \emph{cadenas de Kempe} para su prueba errada del teorema, enunciaremos las definiciones y mostraremos ejemplos, en particular, los grafos de Errera, Kittel, 
+
+\subsection{Algunas fechas importantes}\label{sec:1.2}
+
+A continuación, se listan algunos de los eventos más importantes desde su creación hasta el desenlace a fines del siglo XX.
+
+\begin{enumerate}
+	
+	\item[{\color{DarkBlue}1852}] Francis Guthrie plantea el problema a su hermano Frederick y este a Augustus de Morgan.
+	
+	\item[{\color{DarkBlue}1878}] Arthur Cayley publica el enunciado de la conjetura.
+	
+	\item[{\color{DarkBlue}1879}] Sir Alfred Bray Kempe publica su demostración.
+	
+	\item[{\color{DarkBlue}1890}] Percy Heawood descubre un error insalvable en la prueba dada por Kempe.
+	
+	\item[{\color{DarkBlue}1913}] George Birkhoff introduce la noción de configuración reducible.
+	
+	\item[{\color{DarkBlue}1960}] Se introduce el llamado método de descarga.
+	
+	\item[{\color{DarkBlue}1969}] Avances de Heinrich Heesch en reducibilidad y obtención de conjuntos inevitables de configuraciones.
+	
+	\item[{\color{DarkBlue}1976}] Ken Appel y Wolfgang Haken prueban con ayuda de un ordenador que sus 1.482 configuraciones son reducibles (50 días de cálculo).
+	
+	\item[{\color{DarkBlue}1996}] N. Robertson, D.P. Sanders, P. Seymour y R. Thomas mejoran la demostración con ayuda de ordenador (solo 633 configuraciones) y automatizan la prueba de la inevitabilidad.
+	
+	\item[{\color{DarkBlue}2000}] Ashay Dharwadker da otra prueba del teorema de los 4 colores, no basada en ideas previas, utilizando teoría de grupos, teoría de sistemas de Steiner y correspondencias de Hall.
+	
+	\item[{\color{DarkBlue}2004}] Ibrahim Cahit, dice haber demostrado la conjetura, usando el nuevo concepto de cadenas espirales, sin ordenador.
+
+\end{enumerate}
+
+\section{Definiciones previas}
+
+\subsection{Mapa conexo}
+Un mapa conexo se puede ver como un grafo planar en el cual las porciones de frontra son las ramas del grafo.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=4cm]{conexo}
+	\caption{Mapa Conexo}
+\end{figure}    
+
 Si $G$ es un grafo sin lazos, entonces $G$ es \textbf{$\bm{k}$-coloreable} si podemos asignar uno de $k$ colores a cada vértices de manera que vértices adyacentes tengas diferentes colores. Si $G$ es $k$-coloreable, pero no $(k-1)$- coloreable, diremos que $G$ es \textbf{$\bm{k}$-cromático}, o que el \textbf{número cromático} de $G$ es $k$, y lo denotamos por $\chi(G)=k$. Por ejemplo, la Figura~\ref{fig:1.1} muestra un grafo para el cual $\chi(G)=4$; los colores son dentados por las letras griegas. Es por lo tanto $k$-coloreable si $k>4$. Deberíamos asumir que todos los grafos aquí son simples, ya que los bordes múltiples son irrelevantes para nuestra discusión. También asumiremos que están conectados.
 
 Es claro que $\chi(K_n)=n$, y así, existen grafos con un número cromático grande y arbitrario. En el otro extremo de la escala, $\chi(G)=1$ si y solo si $G$ es el grafo nulo, y $\chi(G)=2$ si y solo si $G$ es un grafo bipartito no nulo. Note que cualquier árbol es $2$-coloreable, así como cualquier ciclo con un número par de vér
@@ -76,112 +138,153 @@ Es claro que $\chi(K_n)=n$, y así, existen grafos con un número cromático gra
 \end{figure}
 
 \begin{definition}[Grafo planar]
-Un dibujo de un grafo $G=(V,E)$ es una aplicación que a cada vértice $v$ del grafo $G$ le asigna un punto $b(v)$ del plano, y a cada rama $e=\{v,v^{\prime}\}\in E$, le asigna un arco $\alpha(e)$ del plano con $b(v)$ y $b(v^{\prime})$como puntos finales. Suponemos que la aplicación $b$ es inyectiva (vértices diferentes tienen asignados distintos puntos del plano), y un punto de la forma $b(v)$ no está en ninguno de los arcos $\alpha(e)$ excepto si es un punto final de este arco. Un grafo junto con alguno de sus dibujos se llama grafo topológico.
+
+Un dibujo de un grafo $G=(V,E)$ es una aplicación que a cada vértice $v$ del grafo $G$ le asigna un punto $b(v)$ del plano, y a cada rama $e=\{v,v^{\prime}\}\in E$, le asigna un arco $\alpha(e)$ del plano con $b(v)$ y $b(v^{\prime})$ como puntos finales. Suponemos que la aplicación $b$ es inyectiva (vértices diferentes tienen asignados distintos puntos del plano), y un punto de la forma $b(v)$ no está en ninguno de los arcos $\alpha(e)$ excepto si es un punto final de este arco. Un grafo junto con alguno de sus dibujos se llama grafo topológico.
+
 \end{definition}
 
 \begin{theorem}[Teorema de Kuratowski]
+
 Un grafo $G$ es planar si y solo si no tiene ningún subgrafo isomorfo a una subdivisión de $K_{3,3}$ o una subdivisión de $K_5$.
+
 \end{theorem}
 
 \begin{definition}[Mapa conexo]
+
 Un mapa es conexo\footnote{De una sola pieza.} y cada una de sus regiones también es conexa.
+
 \end{definition}
 
-\begin{definition}[Número cromático] 
+\begin{definition}[Número cromático]
+
 Sea $G=(V,E)$ un grafo y sea $k$ un número natural. Una aplicación $c\colon V\to \{1,2,\ldots k\}$ se llama \emph{\color{DarkBlue}coloración del grafo} $G$ si $c(x)\neq c(y)$ se cumple para cada rama $\{x,y\}\in E$. \linebreak El \emph{\color{DarkBlue}número cromático} de $G$, denotado por $\chi(G)$, es el \emph{\color{red}mínimo valor} de $k$ para el cual existe una coloración $c\colon V(G)\to\{1,2\ldots,k\}$.
+
 \end{definition}
 
 \begin{definition}[Grafo Dual]
+
 Sea $G=(V,E)$ un grafo planar con un dibujo planar fijo. Denotamos por $\mathcal{F}$ el conjunto de caras de $G$. Definimos un grafo, con posibles lazos y ramas múltiples, como $(\mathcal{F},E,\varepsilon)$, donde $\varepsilon$ se define como $\varepsilon(e)=\{F_i,F_j\}$ siempre que la rama $e$ sea una frontera común de las caras $F_i$ y $F_j$.
 
-Este grafo $\left(\mathcal{F},E,\varepsilon\right)$ se le llama el dual de $G$ y se denota por $G^{\ast}$.	
+Este grafo $\left(\mathcal{F},E,\varepsilon\right)$ se le llama el dual de $G$ y se denota por $G^{\ast}$.
+	
 \end{definition}
 
 \begin{example}[Grafos Duales]
-Para construir una gráfica dual de un grafo plano $G$ se debe colocar un vértice dentro de cada región de $G$ e incluir la región infinita de $G$. Para cada arista compartida por las $2$ regiones, se debe dibujar una arista que conecte a los vértices dentro de estas regiones y para cada arista que se recorre $2$ veces en el camino cerrado alrededor de las aristas de una región se dibuja un lazo en el vértice de la región. 
+
+Para construir una gráfica dual de un grafo plano $G$ se debe colocar un vértice dentro de cada región de $G$ e incluir la región infinita de $G$. Para cada arista compartida por las $2$ regiones, se debe dibujar una arista que conecte a los vértices dentro de estas regiones y para cada arista que se recorre $2$ veces en el camino cerrado alrededor de las aristas de una región se dibuja un lazo en el vértice de la región.
+
 \end{example}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=3cm]{example1}
+\includegraphics[width=6cm]{example1}
 \caption{Grafo $G$.}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=3cm]{example2}
-	\caption{Grafo $G$.}
+	\includegraphics[width=6cm]{example2}
+	\caption{Grafo $G$ y su dual $G^{\ast}$.}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=3cm]{example3}
+	\includegraphics[width=6cm]{example3}
 	\caption{Grafo $G$.}
 \end{figure}
-\subsection{El problema de los cuatro colores}
-
-\subsection{Algunas fechas importantes}
-
-\section{El ``camino'' hacia la demostración}
-
-\subsection{La formulación de la conjetura}
-
-\subsection{La primera ``demostración'': las cadenas de Kempe}
 
 \begin{definition}[Polinomio cromático]
+
 Sea $G=(V,E)$ un grafo planar y $P(G,k)$ el número de vértices coloreados.
 El polinomio cromático cuenta el número de maneras que puede ser coloreado un grafo usando no más de número dado de colores.
+
 \end{definition}
 
 \begin{definition}[Cadenas de Kempe]
+
 Suponga que un mapa $M$ es coloreado por los colores $a, b, c$ y $d$, seleccione un par de ellos, como $a$ y $b$. Considere cualquier región coloreada en uno de esos pares de colores juntos con todas las regiones de esos colores, adyacente o conexa por un conjunto de regiones en los dos colores. Tal conjunto de regiones será llamado una \emph{cadena} $a,b$. Obviamente, la misma cadena $a,b$ es definida por cualquier región en la cadena.
 
 Una propiedad fundamental de la cadena es que si los dos colores sobre las regiones de una cadena simple, o de cualquier conjunto de esas cadenas de los mismos colores, todas intercambiadas, una nueva coloración de mapas resulta
+
 \end{definition}
 
 \begin{definition}[Cadena de Kempe]
+
 Sea $G$ un grafo planar cuyos vértices han sido coloreados apropiadamente y suponga $v\in V(G)$ es coloreado $C_1$. Definimos la \emph{cadena de Kempe} $C_1C_2$ que contiene a $v$ para ser el componente conexa maximal de $G$ que
 
 \begin{enumerate}%[label=\arabic*]
+
 	\item Contiene a $v$, y
+	
 	\item Contenga solo vértices que son coloreados con elementos desde $(C_1C_2)$.
-	\end{enumerate}
+
+\end{enumerate}
+
 \end{definition}
 
-\subsection{Heawood y el error fatal de \citeauthor{kempe}}
+\section{El ``camino'' hacia la demostración}\label{sec:2}
 
-\subsection{Idea clave: la reducibilidad de mapas de \citeauthor{birkhoff}}
+\subsection{La formulación de la conjetura}\label{sec:2.1}
 
-\subsection{El método de descarga de \citeauthor{appel}}
+\subsection{La primera ``demostración'': las cadenas de Kempe}\label{sec:2.2}
 
-\section{Aplicaciones}
 
-\subsection{El juego Hex}
+\subsection{Heawood y el error fatal de \citeauthor{kempe}}\label{sec:2.3}
 
-\section{Conclusiones}
+\begin{figure}[H]
+	\centering
+	\scalebox{.3}{\input{../images/errera.tex}}
+	\caption{Grafo de Errera.}
+\end{figure}
 
-\subsection{Importancia del teorema para los matemáticos}
+\begin{figure}[H]
+	\centering
+	\scalebox{.25}{\input{../images/kittel.tex}}
+	\caption{Grafo de Kittel.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\scalebox{0.6}{\input{../images/soifer.tex}}
+	\caption{Grafo de Soifer.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\scalebox{0.45}{\input{../images/fritsch.tex}}
+	\caption{Grafo de Fritsch.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\scalebox{0.6}{\input{../images/poussin.tex}}
+	\caption{Grafo de Poussin.}
+\end{figure}
+
+\subsection{Idea clave: la reducibilidad de mapas de \citeauthor{birkhoff}}\label{sec:2.4}
+
+\subsection{El método de descarga de \citeauthor{appel}}\label{sec:2.5}
+
+\section{Aplicaciones}\label{sec:3.}
+
+\subsection{El juego Hex}\label{sec:3.1}
+
+\subsection{Resolución del rompecabezas sudoku}\label{sec:3.2}
+
+\subsection{Programa \texttt{TEOCOLOR}}
+
+\texttt{TEOCOLOR} es un sitio web que permite, a través de un juego la implementación de un método de aprendizaje,instrumentos y estrategias que dinamicen la teoría y la práctica dentro de las aulas en el campo de las matemáticas, este programa está basado en la coloración de mapas con un máximo de
+cuatro colores, donde implícitamente se utiliza el teorema de cuatro colores, la teoría de grafos; además facilitan un aprendizaje significativo en personas sordas.
+
+\section{Conclusiones}\label{sec:4}
+
+\subsection{Importancia del teorema para los matemáticos}\label{sec:4.1}
 
 \section*{Agradecimientos}
 
-The authors want to thank the Universidad Nacional de Ingeniería and the Undergraduate Mathematics Group for their hospitality during the visits while preparing this paper.
-
-The authors would like to thank professor Johny Valverde for many valuable and constructive suggestions, that have helped to improve the paper.
+Los autores desean agradecer al profesor asesor \linebreak Fidel Jara de la Escuela Profesional de Matemática de la Universidad Nacional de Ingeniería por las  discusiones interesantes y sugerencias constructivas que han ayudado a mejorar el documento. También estamos agradecidos con el profesor Ronald Mas por permitirnos exponer este tema como proyecto colaborativo en el curso de Introducción a la matemática discreta.
 
 \nocite{*}
-\printbibliography[title={Referencias}]
+\printbibliography[title={Referencias bibliográficas}]
 \end{document}
 https://www.overleaf.com/17245402qmwcfgzsxdrd#/65670813/
-ANTECEDENTES
-• 1852: Francis Guthrie plantea el problema a su hermano Frederick y éste a Augustus de Morgan.
-• 1878: Arthur Cayley publica el enunciado de la conjetura.
-• 1879: Sir Alfred Bray Kempe publica su demostración.
-• 1890: Percy Heawood descubre un error insalvable en la prueba dada por Kempe.
-• 1913: George Birkhoff introduce la noción de configuración reducible.
-• 1960: Se introduce el llamado método de descarga.
-• 1969: Avances de Heinrich Heesch en reducibilidad y obtención de conjuntos inevitables de configuraciones.
-• 1976: Ken Appel y Wolfgang Haken prueban con ayuda de un ordenador que sus 1.482 configuraciones son reducibles (50 días de cálculo).
-• 1996: N. Robertson, D.P. Sanders, P. Seymour y R. Thomas mejoran la demostración con ayuda de ordenador (sólo 633 configuraciones) y automatizan la prueba de la inevitabilidad.
-• 2000: Ashay Dharwadker da otra prueba del teorema de los 4 colores, no basada en ideas previas, utilizando teoría de grupos, teoría de sistemas de Steiner y correspondencias de Hall
-• 2004: Ibrahim Cahit, dice haber demostrado la conjetura, usando el nuevo concepto de cadenas espirales, sin ordenador.
-Línea de tiempo

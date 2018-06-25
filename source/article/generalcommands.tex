@@ -26,24 +26,29 @@
 \bibliography{reference}
 
 \usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
 \usepackage{pifont}
 \usepackage{geometry}
 \usepackage[svgnames]{xcolor}
 \usepackage{graphicx}
-\usepackage{sagetex}
+%\usepackage{sagetex}
 \usepackage{float}
 \usepackage{tkz-graph}
 \usepackage{txfonts}
-\usepackage{amsmath}
+\usepackage{amsmath,amsthm}
+\theoremstyle{definition}
 \usepackage{bm}
-%\theoremstyle{definition}
-\usepackage{hyperref}
-\hypersetup{
-	colorlinks=true,
-	linkcolor=red,
-	urlcolor=red,
-	citecolor=red
-}
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=black,anchorcolor=black,citecolor=black]{hyperref}
+\hypersetup{pdfinfo={
+		Title={El teorema de los cuatro colores},
+		Author={Grupo Nº6},
+		Keywords={teorema de los cuatro colores, cadena de Kempe, grafos planares, coloración de mapas},
+		Subject={Introducción a la matemática discreta},
+		Producer={TeXstudio 2.12.8},
+		Creator={pdfTeX Version 3.14159265 TeX Live 2018 Debian}
+}}
+
+
 \usepackage{etoolbox}
 \AtBeginDocument{%
 	%\patchcmd{<cmd>}{<search>}{<replace>}{<success>}{<failure>}
@@ -53,34 +58,42 @@
 	%{}{}% <succes><failure>
 	\patchcmd{\MaketitleBox}{\vspace*{-20pt}\fi}{\fi}{}{}%
 	\patchcmd{\abstract}{Abstract}{Resumen}{}{}
+	\patchcmd{\keyword}{Keywords}{Palabras clave}{}{}
 }
 
-\makeatletter
-\patchcmd{\ps@pprintTitle}{\footnotesize\itshape
-	Preprint submitted to \ifx\@journal\@empty Elsevier
-	\else\@journal\fi\hfill\today}{\relax}{}{}
-\makeatother
+%\makeatletter
+%\patchcmd{\ps@pprintTitle}{\footnotesize\itshape
+%	Preprint submitted to \ifx\@journal\@empty Elsevier
+%	\else\@journal\fi\hfill\today}{\relax}{}{}
+%\makeatother
 
 \makeatletter
-
-\def\keyword{%
-	\def\sep{\unskip, }%
-	\def\MSC{\@ifnextchar[{\@MSC}{\@MSC[2000]}}
-	\def\@MSC[##1]{\par\leavevmode\hbox {\it ##1~MSC:\space}}%
-	\def\PACS{\par\leavevmode\hbox {\it PACS:\space}}%
-	\def\JEL{\par\leavevmode\hbox {\it JEL:\space}}%
-	\global\setbox\keybox=\vbox\bgroup\hsize=\textwidth
-	\normalsize\normalfont\def\baselinestretch{1}
-	\parskip\z@
-	\noindent\textit{Palabras clave: }  % <--- Edit as necessary
-	\raggedright                         % Keywords are not justified.
-	\ignorespaces}
+\def\printFirstPageNotes{%
+	\iflongmktitle
+	\let\columnwidth=\textwidth\fi
+	\ifx\@tnotes\@empty\else\@tnotes\fi
+	\ifx\@nonumnotes\@empty\else\@nonumnotes\fi
+	\ifx\@cornotes\@empty\else\@cornotes\fi
+	\ifx\@elseads\@empty\relax\else
+	\let\thefootnote\relax
+	\footnotetext{\ifnum\theead=1\relax
+		\textit{Correo electrónico:\space}\else
+		\textit{Correos electrónicos:\space}\fi
+		\@elseads}\fi
+	\ifx\@elsuads\@empty\relax\else
+	\let\thefootnote\relax
+	\footnotetext{\textit{Sitio web:\space}%
+		\@elsuads}\fi
+	\ifx\@fnotes\@empty\else\@fnotes\fi
+	\iflongmktitle\if@twocolumn
+	\let\columnwidth=\Columnwidth\fi\fi
+}
 \makeatother
 
 %% `Elsevier LaTeX' style
 %\bibliographystyle{elsarticle-num}
-\renewcommand{\contentsname}{Tabla de contenidos}
-\renewcommand{\figurename}{Fig.}
+\renewcommand{\spanishcontentsname}{Tabla de contenidos}
+\renewcommand{\spanishfigurename}{Fig.}
 %\newcommand{\MVAt}{{\usefont{U}{mvs}{m}{n}\symbol{`@}}}
 \newtheorem{definition}{Definición}
 \newtheorem{example}{Ejemplo}
